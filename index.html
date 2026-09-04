@@ -48,13 +48,16 @@
         <!-- Indicador de Entorno -->
         <span class="env-badge demo" id="headerEnvBadge">MODO LOCAL / DEMO</span>
 
+        <!-- Badge de Usuario Autenticado -->
+        <div id="headerUserBadgeContainer" style="display: none; align-items: center;"></div>
+
         <!-- Selector de Perfil / Rol -->
         <div class="user-role-control">
           <span>👤 Perfil:</span>
           <select id="headerRoleSelect" class="role-select" title="Seleccionar Perfil de Usuario">
             <option value="RECTOR">Rector / Directivo IE</option>
-            <option value="COORDINADOR">Coordinador SED</option>
-            <option value="ADMINISTRADOR">Administrador SED</option>
+            <option value="COORDINADOR">🔒 Coordinador SED</option>
+            <option value="ADMINISTRADOR">🔒 Administrador SED</option>
             <option value="CONSULTA">Consulta Pública</option>
           </select>
         </div>
@@ -727,11 +730,14 @@
           <!-- Subpestañas de Administración -->
           <div
             style="display: flex; gap: 0.5rem; border-bottom: 2px solid var(--border-light); margin-bottom: 1.5rem; overflow-x: auto;">
-            <button type="button" class="admin-subtab-btn active btn btn-sm btn-secondary" data-subtab="criterios">
+            <button type="button" class="admin-subtab-btn active btn btn-sm btn-secondary" data-subtab="usuarios">
+              👥 Control de Accesos y Usuarios
+            </button>
+            <button type="button" class="admin-subtab-btn btn btn-sm btn-secondary" data-subtab="criterios">
               📋 Criterios de Evaluación
             </button>
             <button type="button" class="admin-subtab-btn btn btn-sm btn-secondary" data-subtab="coordinadores">
-              👥 Asignación de Coordinadores
+              🏫 Asignación de Coordinadores
             </button>
             <button type="button" class="admin-subtab-btn btn btn-sm btn-secondary" data-subtab="auditoria">
               🛡️ Registro de Auditoría (AUDITORIA)
@@ -741,8 +747,39 @@
             </button>
           </div>
 
+          <!-- Subtab 0: Control de Accesos y Usuarios (Exclusivo Administrador) -->
+          <div class="admin-subtab-pane active" id="admin-pane-usuarios">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+              <div>
+                <h4 style="color: var(--brand-primary); margin-bottom: 0.2rem;">Directorio de Usuarios y Accesos Autorizados</h4>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">Gestión de directivos, coordinadores y administradores con acceso a los perfiles del sistema.</p>
+              </div>
+              <button type="button" class="btn btn-primary btn-sm" id="btnOpenNewUsuarioModal">
+                ➕ Registrar Nuevo Usuario
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table class="table-sed">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre / Funcionario</th>
+                    <th>Correo Institucional</th>
+                    <th>Rol Asignado</th>
+                    <th>Municipio / Jurisdicción</th>
+                    <th>Estado</th>
+                    <th style="text-align: right;">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="tablaAdminUsuariosBody">
+                  <!-- Filas dinámicas -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
           <!-- Subtab 1: Criterios -->
-          <div class="admin-subtab-pane active" id="admin-pane-criterios">
+          <div class="admin-subtab-pane" id="admin-pane-criterios" style="display: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
               <p style="font-size: 0.88rem; color: var(--text-muted);">Parámetros de calificación dinámicos para los
                 coordinadores evaluadores.</p>
@@ -981,6 +1018,99 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" onclick="adminController.closeModalCriterio()">Cancelar</button>
         <button type="button" class="btn btn-primary" id="btnSaveCriterio">Guardar Criterio</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 6: Autenticación y Control de Acceso Protegido -->
+  <div class="modal-overlay" id="modalAuthLogin">
+    <div class="modal-box" style="max-width: 480px;">
+      <div class="modal-header" style="background: var(--brand-primary); color: #ffffff;">
+        <div class="modal-title">🔒 Verificación de Acceso Institucional</div>
+        <button type="button" class="modal-close-btn" style="color: #ffffff;" onclick="auth.closeLoginModal()">✕</button>
+      </div>
+      <div class="modal-body" style="padding: 1.5rem;">
+        <div style="text-align: center; margin-bottom: 1.25rem;">
+          <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">🛡️</div>
+          <h3 style="color: var(--brand-primary); font-size: 1.15rem; margin-bottom: 0.35rem;" id="authModalRoleTitle">
+            Perfil Protegido
+          </h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.4;">
+            Este perfil está restringido para funcionarios autorizados de la Secretaría de Educación de Caldas. Ingrese su correo institucional registrado.
+          </p>
+        </div>
+
+        <div id="authModalError" style="display: none; background: #fee2e2; border-left: 4px solid #ef4444; color: #991b1b; padding: 0.75rem 1rem; border-radius: 4px; font-size: 0.85rem; margin-bottom: 1rem;"></div>
+
+        <div class="form-group" style="margin-bottom: 1.25rem;">
+          <label class="form-label" for="authInputEmail"><strong>Correo Electrónico Institucional:</strong></label>
+          <input type="email" id="authInputEmail" class="form-control" placeholder="ejemplo@sedcaldas.gov.co"
+            onkeyup="if(event.key==='Enter') auth.submitLogin()">
+          <span style="font-size: 0.76rem; color: var(--text-muted); margin-top: 0.25rem; display: block;">
+            Sólo correos registrados y activos en el Directorio de Usuarios.
+          </span>
+        </div>
+      </div>
+      <div class="modal-footer" style="background: var(--bg-subtle);">
+        <button type="button" class="btn btn-secondary" onclick="auth.closeLoginModal()">Cancelar</button>
+        <button type="button" class="btn btn-primary" onclick="auth.submitLogin()">🔑 Validar e Ingresar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 7: Crear / Editar Usuario y Control de Accesos (Exclusivo Administrador) -->
+  <div class="modal-overlay" id="modalAdminUsuario">
+    <div class="modal-box modal-lg">
+      <div class="modal-header">
+        <div class="modal-title" id="userModalTitle">➕ Registrar Nuevo Usuario Autorizado</div>
+        <button type="button" class="modal-close-btn" onclick="adminController.closeModalUsuario()">✕</button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="userFormId">
+        <div class="form-grid">
+          <div class="col-6 form-group">
+            <label class="form-label"><strong>Nombre Completo / Funcionario *</strong></label>
+            <input type="text" id="userFormNombre" class="form-control" placeholder="Ej: Dra. María Elena Restrepo">
+          </div>
+          <div class="col-6 form-group">
+            <label class="form-label"><strong>Correo Electrónico Institucional *</strong></label>
+            <input type="email" id="userFormEmail" class="form-control" placeholder="nombre@sedcaldas.gov.co">
+          </div>
+          <div class="col-6 form-group">
+            <label class="form-label">Cargo Institucional</label>
+            <input type="text" id="userFormCargo" class="form-control" placeholder="Ej: Coordinadora de Calidad / Profesional Universitario">
+          </div>
+          <div class="col-6 form-group">
+            <label class="form-label"><strong>Rol de Acceso Asignado *</strong></label>
+            <select id="userFormRol" class="form-control">
+              <option value="COORDINADOR">✍️ COORDINADOR (Bandeja de Evaluación, Dashboard y Consultas)</option>
+              <option value="ADMINISTRADOR">🛡️ ADMINISTRADOR (Acceso Total y Gestión de Usuarios)</option>
+              <option value="RECTOR">📝 RECTOR (Radicación y Consulta)</option>
+              <option value="CONSULTA">👁️ CONSULTA (Visualización y Estadísticas)</option>
+            </select>
+          </div>
+          <div class="col-6 form-group">
+            <label class="form-label">Municipio / Jurisdicción Asignada</label>
+            <select id="userFormMunicipio" class="form-control">
+              <option value="TODOS">TODOS (Nivel Departamental)</option>
+            </select>
+          </div>
+          <div class="col-6 form-group">
+            <label class="form-label">Teléfono / Celular de Contacto</label>
+            <input type="text" id="userFormTel" class="form-control" placeholder="Ej: 3123456789">
+          </div>
+          <div class="col-6 form-group">
+            <label class="form-label"><strong>Estado del Acceso *</strong></label>
+            <select id="userFormEstado" class="form-control">
+              <option value="ACTIVO">✓ ACTIVO (Permite ingreso)</option>
+              <option value="INACTIVO">✕ INACTIVO (Acceso suspendido)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="adminController.closeModalUsuario()">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="btnSaveUsuario">💾 Guardar Usuario y Accesos</button>
       </div>
     </div>
   </div>

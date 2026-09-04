@@ -71,7 +71,18 @@ function setupSistemaCompleto() {
   ];
   criterios.forEach(function(c) { sheetCrit.appendRow(c); });
 
-  // 3. Crear Carpeta Raíz en Google Drive
+  // 3. Cargar Usuarios Iniciales Autorizados
+  var sheetUsers = ss.getSheetByName(CONFIG.SHEETS.USUARIOS);
+  var fechaNow = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyy-MM-dd HH:mm:ss');
+  var usuariosIniciales = [
+    ['USR-001', 'Rector Marino Gómez', 'Rector', 'rector.marinogomez@sedcaldas.edu.co', '3104567890', 'AGUADAS', '117013000306', 'RECTOR', 'ACTIVO', fechaNow, fechaNow],
+    ['USR-002', 'Dra. María Elena Restrepo', 'Coordinadora de Calidad y Cobertura', 'maria.restrepo@sedcaldas.gov.co', '3123456781', 'TODOS', '', 'COORDINADOR', 'ACTIVO', fechaNow, fechaNow],
+    ['USR-003', 'Ing. Carlos Alberto Morales', 'Administrador del Sistema', 'admin.sistemas@sedcaldas.gov.co', '3119876543', 'TODOS', '', 'ADMINISTRADOR', 'ACTIVO', fechaNow, fechaNow],
+    ['USR-004', 'Supervisión Departamental SED', 'Coordinador Técnico', 'hadiaz@sedcaldas.edu.co', '3100000000', 'TODOS', '', 'ADMINISTRADOR', 'ACTIVO', fechaNow, fechaNow]
+  ];
+  usuariosIniciales.forEach(function(u) { sheetUsers.appendRow(u); });
+
+  // 4. Crear Carpeta Raíz en Google Drive
   try {
     var driveRoot = DriveService.getRootFolder();
     Logger.log('Configuración completada con éxito.');

@@ -37,6 +37,17 @@ class SedAdminController {
     if (btnSaveCrit) {
       btnSaveCrit.addEventListener('click', () => this.guardarCriterio());
     }
+
+    // Modal nuevo usuario / acceso
+    const btnNewUser = document.getElementById('btnOpenNewUsuarioModal');
+    if (btnNewUser) {
+      btnNewUser.addEventListener('click', () => this.abrirModalUsuario());
+    }
+
+    const btnSaveUser = document.getElementById('btnSaveUsuario');
+    if (btnSaveUser) {
+      btnSaveUser.addEventListener('click', () => this.guardarUsuario());
+    }
   }
 
   switchSubtab(subtabId) {
@@ -55,10 +66,205 @@ class SedAdminController {
       pane.style.display = 'block';
     }
 
+    if (subtabId === 'usuarios') this.cargarUsuarios();
     if (subtabId === 'criterios') this.cargarCriterios();
     if (subtabId === 'auditoria') this.cargarAuditoria();
     if (subtabId === 'coordinadores') this.cargarAsignaciones();
     if (subtabId === 'config') this.cargarConfig();
+  }
+
+  // --- GESTIÓN Y CONTROL DE ACCESOS Y USUARIOS ---
+  async cargarUsuarios() {
+    const tbody = document.getElementById('tablaAdminUsuariosBody');
+    if (!tbody) return;
+
+    tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; padding: 1.5rem; color: var(--text-muted);">Cargando usuarios autorizados...</td></tr>`;
+
+    try {
+      const res = await api.obtenerUsuarios();
+      const users = res.data || [];
+
+      if (users.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; padding: 2rem; color: var(--text-muted);">No hay usuarios registrados.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = users.map(u => `
+        <tr>
+          <td><code>${u.id_usuario}</code></td>
+          <td>
+            <strong>${u.nombre}</strong>
+            <div style="font-size: 0.78rem; color: var(--text-muted);">${u.cargo || 'Funcionario'}</div>
+          </td>
+          <td>
+            <a href="mailto:${u.correo}" style="color: var(--brand-primary); font-weight: 600; text-decoration: none;">
+              ${u.correo}
+            </a>
+          </td>
+          <td>
+            <span class="badge ${u.rol === 'ADMINISTRADOR' ? 'badge-correction' : u.rol === 'COORDINADOR' ? 'badge-review' : 'badge-draft'}" style="font-weight: 700;">
+              ${u.rol === 'ADMINISTRADOR' ? '🛡️ ADMINISTRADOR' : u.rol === 'COORDINADOR' ? '✍️ COORDINADOR' : u.rol === 'RECTOR' ? '📝 RECTOR' : '👁️ CONSULTA'}
+            </span>
+          </td>
+          <td>
+            <span style="font-size: 0.85rem;">${u.municipio || 'TODOS'}</span>
+          </td>
+          <td>
+            <span class="badge ${u.estado === 'ACTIVO' ? 'badge-approved' : 'badge-draft'}">
+              ${u.estado === 'ACTIVO' ? '✓ Activo' : '✕ Inactivo'}
+            </span>
+          </td>
+          <td style="text-align: right; white-space: nowrap;">
+            <button type="button" class="btn btn-outline-primary btn-sm" title="Editar datos" onclick="adminController.abrirModalUsuario('${u.id_usuario}')">
+              ✏️
+            </button>
+            <button type="button" class="btn btn-sm ${u.estado === 'ACTIVO' ? 'btn-outline-warning' : 'btn-outline-success'}" title="${u.estado === 'ACTIVO' ? 'Desactivar acceso' : 'Activar acceso'}" onclick="adminController.toggleEstadoUsuario('${u.id_usuario}', '${u.estado}')">
+              ${u.estado === 'ACTIVO' ? '🚫' : '✓'}
+            </button>
+            <button type="button" class="btn btn-outline-danger btn-sm" title="Eliminar usuario" onclick="adminController.eliminarUsuario('${u.id_usuario}', '${u.nombre}')">
+              🗑️
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    } catch (err) {
+      tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: var(--brand-danger); padding: 1.5rem;">Error al cargar usuarios: ${err.message}</td></tr>`;
+    }
+  }
+
+  async abrirModalUsuario(id_usuario = null) {
+    const titleEl = document.getElementById('userModalTitle');
+    const inputId = document.getElementById('userFormId');
+    const inputNombre = document.getElementById('userFormNombre');
+    const inputEmail = document.getElementById('userFormEmail');
+    const inputCargo = document.getElementById('userFormCargo');
+    const selectRol = document.getElementById('userFormRol');
+    const selectMuni = document.getElementById('userFormMunicipio');
+    const inputTel = document.getElementById('userFormTel');
+    const selectEstado = document.getElementById('userFormEstado');
+
+    // Poblar dropdown de municipios
+    if (selectMuni && selectMuni.options.length <= 1) {
+      selectMuni.innerHTML = '<option value="TODOS">TODOS (Nivel Departamental)</option>';
+      SED_CATALOGO_MUNICIPIOS.forEach(m => {
+        const opt = document.createElement('option');
+        opt.value = m;
+        opt.textContent = m;
+        selectMuni.appendChild(opt);
+      });
+    }
+
+    if (id_usuario) {
+      if (titleEl) titleEl.textContent = '✏️ Editar Usuario y Permisos de Acceso';
+      const res = await api.obtenerUsuarios();
+      const user = (res.data || []).find(u => u.id_usuario === id_usuario);
+      if (user) {
+        if (inputId) inputId.value = user.id_usuario;
+        if (inputNombre) inputNombre.value = user.nombre || '';
+        if (inputEmail) inputEmail.value = user.correo || '';
+        if (inputCargo) inputCargo.value = user.cargo || '';
+        if (selectRol) selectRol.value = user.rol || 'COORDINADOR';
+        if (selectMuni) selectMuni.value = user.municipio || 'TODOS';
+        if (inputTel) inputTel.value = user.telefono || '';
+        if (selectEstado) selectEstado.value = user.estado || 'ACTIVO';
+      }
+    } else {
+      if (titleEl) titleEl.textContent = '➕ Registrar Nuevo Usuario Autorizado';
+      if (inputId) inputId.value = '';
+      if (inputNombre) inputNombre.value = '';
+      if (inputEmail) inputEmail.value = '';
+      if (inputCargo) inputCargo.value = '';
+      if (selectRol) selectRol.value = 'COORDINADOR';
+      if (selectMuni) selectMuni.value = 'TODOS';
+      if (inputTel) inputTel.value = '';
+      if (selectEstado) selectEstado.value = 'ACTIVO';
+    }
+
+    const modal = document.getElementById('modalAdminUsuario');
+    if (modal) modal.classList.add('active');
+  }
+
+  closeModalUsuario() {
+    const modal = document.getElementById('modalAdminUsuario');
+    if (modal) modal.classList.remove('active');
+  }
+
+  async guardarUsuario() {
+    const id_usuario = document.getElementById('userFormId')?.value || '';
+    const nombre = document.getElementById('userFormNombre')?.value.trim();
+    const correo = document.getElementById('userFormEmail')?.value.trim().toLowerCase();
+    const cargo = document.getElementById('userFormCargo')?.value.trim();
+    const rol = document.getElementById('userFormRol')?.value || 'COORDINADOR';
+    const municipio = document.getElementById('userFormMunicipio')?.value || 'TODOS';
+    const telefono = document.getElementById('userFormTel')?.value.trim();
+    const estado = document.getElementById('userFormEstado')?.value || 'ACTIVO';
+
+    if (!nombre || !correo) {
+      app.showToast('Por favor ingrese el nombre completo y el correo electrónico.', 'warning');
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(correo)) {
+      app.showToast('Por favor ingrese un formato de correo electrónico válido.', 'warning');
+      return;
+    }
+
+    const userData = {
+      id_usuario: id_usuario || null,
+      nombre,
+      correo,
+      cargo: cargo || (rol === 'ADMINISTRADOR' ? 'Administrador SED' : 'Coordinador SED'),
+      rol,
+      municipio,
+      codigo_establecimiento: '',
+      telefono: telefono || '',
+      estado
+    };
+
+    try {
+      app.showLoading(true, 'Guardando usuario y actualizando permisos...');
+      await api.guardarUsuario(userData);
+      app.showLoading(false);
+
+      this.closeModalUsuario();
+      this.cargarUsuarios();
+      app.showToast(`Usuario ${nombre} guardado exitosamente con rol ${rol}.`, 'success');
+    } catch (err) {
+      app.showLoading(false);
+      app.showToast('Error al guardar usuario: ' + err.message, 'error');
+    }
+  }
+
+  async eliminarUsuario(id_usuario, nombre) {
+    if (confirm(`¿Está seguro de revocar el acceso y eliminar al usuario "${nombre}" (${id_usuario})?`)) {
+      try {
+        app.showLoading(true, 'Eliminando usuario...');
+        await api.eliminarUsuario(id_usuario);
+        app.showLoading(false);
+
+        this.cargarUsuarios();
+        app.showToast(`Usuario ${nombre} eliminado.`, 'info');
+      } catch (err) {
+        app.showLoading(false);
+        app.showToast('Error al eliminar usuario: ' + err.message, 'error');
+      }
+    }
+  }
+
+  async toggleEstadoUsuario(id_usuario, estadoActual) {
+    const nuevoEstado = estadoActual === 'ACTIVO' ? 'INACTIVO' : 'ACTIVO';
+    try {
+      app.showLoading(true, 'Actualizando estado de acceso...');
+      await api.cambiarEstadoUsuario(id_usuario, nuevoEstado);
+      app.showLoading(false);
+
+      this.cargarUsuarios();
+      app.showToast(`Estado de usuario cambiado a ${nuevoEstado}.`, 'info');
+    } catch (err) {
+      app.showLoading(false);
+      app.showToast('Error al cambiar estado: ' + err.message, 'error');
+    }
   }
 
   // --- GESTIÓN DE CRITERIOS ---

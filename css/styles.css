@@ -1279,6 +1279,88 @@ h1, h2, h3, h4, h5, h6 {
   color: #94a3b8;
 }
 
+/* ==========================================================================
+   ESTILOS DE CONTROL DE ACCESOS Y USUARIOS AUTENTICADOS
+   ========================================================================== */
+
+.auth-user-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  color: #ffffff;
+}
+
+.auth-user-dot {
+  width: 7px;
+  height: 7px;
+  background-color: #22c55e;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 6px #22c55e;
+}
+
+.auth-user-name {
+  font-weight: 600;
+  max-width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.auth-user-role-tag {
+  background: var(--brand-accent);
+  color: #ffffff;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 0.05rem 0.35rem;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.auth-logout-btn {
+  background: rgba(239, 68, 68, 0.25);
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  color: #fca5a5;
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  transition: all var(--transition-fast);
+}
+
+.auth-logout-btn:hover {
+  background: #ef4444;
+  color: #ffffff;
+}
+
+.btn-outline-warning {
+  background: transparent;
+  color: #d97706;
+  border: 1px solid #d97706;
+}
+
+.btn-outline-warning:hover {
+  background: #d97706;
+  color: #ffffff;
+}
+
+.btn-outline-success {
+  background: transparent;
+  color: #166534;
+  border: 1px solid #166534;
+}
+
+.btn-outline-success:hover {
+  background: #166534;
+  color: #ffffff;
+}
+
 @media print {
   .top-toolbar, .sed-navbar, .btn, .stepper-container, .sed-footer, .ticker-section {
     display: none !important;
@@ -1288,3 +1370,4 @@ h1, h2, h3, h4, h5, h6 {
     color: #000000;
   }
 }
+

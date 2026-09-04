@@ -127,6 +127,26 @@ function doPost(e) {
         result = DashboardService.obtenerDashboard();
         break;
 
+      case 'obtenerUsuarios':
+        result = UsuariosService.obtenerUsuarios();
+        break;
+
+      case 'guardarUsuario':
+        result = UsuariosService.guardarUsuario(postData.usuario);
+        break;
+
+      case 'eliminarUsuario':
+        result = UsuariosService.eliminarUsuario(postData.id_usuario);
+        break;
+
+      case 'cambiarEstadoUsuario':
+        result = UsuariosService.cambiarEstadoUsuario(postData.id_usuario, postData.estado);
+        break;
+
+      case 'verificarAcceso':
+        result = UsuariosService.verificarAcceso(postData.correo, postData.rol);
+        break;
+
       default:
         throw new Error("Acción no reconocida: " + action);
     }
@@ -813,11 +833,132 @@ var UsuariosService = {
 
     for (var i = 1; i < data.length; i++) {
       var row = data[i];
+      if (!row[0] && !row[3]) continue;
       var item = {};
-      headers.forEach(function(h, idx) { item[h] = row[idx]; });
+      headers.forEach(function(h, idx) {
+        item[h] = row[idx] !== undefined ? row[idx].toString().trim() : '';
+      });
       list.push(item);
     }
     return list;
+  },
+
+  guardarUsuario: function(usuarioData) {
+    var ss = getSpreadsheet();
+    var sheet = ss.getSheetByName(CONFIG.SHEETS.USUARIOS);
+    if (!sheet) throw new Error('Hoja USUARIOS no encontrada.');
+
+    var now = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyy-MM-dd HH:mm:ss');
+    var data = sheet.getDataRange().getValues();
+    var headers = data[0];
+    var idIdx = headers.indexOf('id_usuario');
+    var emailIdx = headers.indexOf('correo');
+
+    var idUsuario = usuarioData.id_usuario || ('USR-' + Math.floor(100 + Math.random() * 900));
+    var rowIndex = -1;
+
+    for (var i = 1; i < data.length; i++) {
+      if ((idIdx >= 0 && data[i][idIdx] === idUsuario) || (emailIdx >= 0 && data[i][emailIdx].toString().toLowerCase() === usuarioData.correo.toLowerCase())) {
+        rowIndex = i + 1;
+        break;
+      }
+    }
+
+    var rowValues = [
+      idUsuario,
+      usuarioData.nombre || '',
+      usuarioData.cargo || '',
+      (usuarioData.correo || '').toLowerCase().trim(),
+      usuarioData.telefono || '',
+      usuarioData.municipio || 'TODOS',
+      usuarioData.codigo_establecimiento || '',
+      (usuarioData.rol || 'COORDINADOR').toUpperCase().trim(),
+      (usuarioData.estado || 'ACTIVO').toUpperCase().trim(),
+      usuarioData.fecha_registro || now,
+      now
+    ];
+
+    if (rowIndex > 0) {
+      sheet.getRange(rowIndex, 1, 1, rowValues.length).setValues([rowValues]);
+    } else {
+      sheet.appendRow(rowValues);
+    }
+
+    return {
+      success: true,
+      id_usuario: idUsuario,
+      usuario: usuarioData
+    };
+  },
+
+  eliminarUsuario: function(idUsuario) {
+    var ss = getSpreadsheet();
+    var sheet = ss.getSheetByName(CONFIG.SHEETS.USUARIOS);
+    if (!sheet) return false;
+
+    var data = sheet.getDataRange().getValues();
+    var headers = data[0];
+    var idIdx = headers.indexOf('id_usuario');
+
+    for (var i = 1; i < data.length; i++) {
+      if (data[i][idIdx] === idUsuario) {
+        sheet.deleteRow(i + 1);
+        return true;
+      }
+    }
+    return false;
+  },
+
+  cambiarEstadoUsuario: function(idUsuario, nuevoEstado) {
+    var ss = getSpreadsheet();
+    var sheet = ss.getSheetByName(CONFIG.SHEETS.USUARIOS);
+    if (!sheet) return false;
+
+    var data = sheet.getDataRange().getValues();
+    var headers = data[0];
+    var idIdx = headers.indexOf('id_usuario');
+    var estadoIdx = headers.indexOf('estado');
+    var actIdx = headers.indexOf('fecha_actualizacion');
+
+    for (var i = 1; i < data.length; i++) {
+      if (data[i][idIdx] === idUsuario) {
+        sheet.getRange(i + 1, estadoIdx + 1).setValue(nuevoEstado.toUpperCase());
+        if (actIdx >= 0) {
+          var now = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyy-MM-dd HH:mm:ss');
+          sheet.getRange(i + 1, actIdx + 1).setValue(now);
+        }
+        return true;
+      }
+    }
+    return false;
+  },
+
+  verificarAcceso: function(correo, rolRequerido) {
+    var usuarios = this.obtenerUsuarios();
+    var emailNorm = (correo || '').toLowerCase().trim();
+    var rolNorm = (rolRequerido || '').toUpperCase().trim();
+
+    var user = null;
+    for (var i = 0; i < usuarios.length; i++) {
+      if ((usuarios[i].correo || '').toLowerCase().trim() === emailNorm && usuarios[i].estado === 'ACTIVO') {
+        user = usuarios[i];
+        break;
+      }
+    }
+
+    if (!user) {
+      return { autorizado: false, mensaje: 'Usuario no registrado o inactivo en el sistema.' };
+    }
+
+    if (user.rol === 'ADMINISTRADOR') {
+      return { autorizado: true, usuario: user };
+    }
+
+    if (user.rol === rolNorm) {
+      return { autorizado: true, usuario: user };
+    }
+
+    return { autorizado: false, mensaje: 'El correo ' + correo + ' no tiene permisos para el perfil ' + rolRequerido + '.' };
   }
 };
 
@@ -922,7 +1063,18 @@ function setupSistemaCompleto() {
   ];
   criterios.forEach(function(c) { sheetCrit.appendRow(c); });
 
-  // 3. Crear Carpeta Raíz en Google Drive
+  // 3. Cargar Usuarios Iniciales Autorizados
+  var sheetUsers = ss.getSheetByName(CONFIG.SHEETS.USUARIOS);
+  var fechaNow = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyy-MM-dd HH:mm:ss');
+  var usuariosIniciales = [
+    ['USR-001', 'Rector Marino Gómez', 'Rector', 'rector.marinogomez@sedcaldas.edu.co', '3104567890', 'AGUADAS', '117013000306', 'RECTOR', 'ACTIVO', fechaNow, fechaNow],
+    ['USR-002', 'Dra. María Elena Restrepo', 'Coordinadora de Calidad y Cobertura', 'maria.restrepo@sedcaldas.gov.co', '3123456781', 'TODOS', '', 'COORDINADOR', 'ACTIVO', fechaNow, fechaNow],
+    ['USR-003', 'Ing. Carlos Alberto Morales', 'Administrador del Sistema', 'admin.sistemas@sedcaldas.gov.co', '3119876543', 'TODOS', '', 'ADMINISTRADOR', 'ACTIVO', fechaNow, fechaNow],
+    ['USR-004', 'Supervisión Departamental SED', 'Coordinador Técnico', 'hadiaz@sedcaldas.edu.co', '3100000000', 'TODOS', '', 'ADMINISTRADOR', 'ACTIVO', fechaNow, fechaNow]
+  ];
+  usuariosIniciales.forEach(function(u) { sheetUsers.appendRow(u); });
+
+  // 4. Crear Carpeta Raíz en Google Drive
   try {
     var driveRoot = DriveService.getRootFolder();
     Logger.log('Carpeta Drive creada/vinculada: ' + driveRoot.getUrl());

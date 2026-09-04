@@ -586,6 +586,80 @@ class SedStorageEngine {
     return list;
   }
 
+  // --- MÉTODOS DE USUARIOS Y CONTROL DE ACCESOS ---
+  getUsuarios() {
+    return JSON.parse(localStorage.getItem(APP_CONFIG.STORAGE_KEYS.USUARIOS) || '[]');
+  }
+
+  saveUsuario(userData) {
+    const list = this.getUsuarios();
+    const emailLower = (userData.correo || '').toLowerCase().trim();
+    const idx = list.findIndex(u => (userData.id_usuario && u.id_usuario === userData.id_usuario) || (u.correo && u.correo.toLowerCase() === emailLower));
+    
+    const now = new Date().toISOString().replace('T', ' ').substring(0, 19);
+
+    if (idx >= 0) {
+      list[idx] = {
+        ...list[idx],
+        ...userData,
+        fecha_actualizacion: now
+      };
+    } else {
+      const id = userData.id_usuario || `USR-${(list.length + 1).toString().padStart(3, '0')}`;
+      list.push({
+        id_usuario: id,
+        nombre: userData.nombre || '',
+        cargo: userData.cargo || '',
+        correo: emailLower,
+        telefono: userData.telefono || '',
+        municipio: userData.municipio || 'TODOS',
+        codigo_establecimiento: userData.codigo_establecimiento || '',
+        rol: (userData.rol || 'COORDINADOR').toUpperCase(),
+        estado: (userData.estado || 'ACTIVO').toUpperCase(),
+        fecha_registro: now,
+        fecha_actualizacion: now
+      });
+    }
+
+    localStorage.setItem(APP_CONFIG.STORAGE_KEYS.USUARIOS, JSON.stringify(list));
+    return list;
+  }
+
+  deleteUsuario(id_usuario) {
+    let list = this.getUsuarios();
+    list = list.filter(u => u.id_usuario !== id_usuario);
+    localStorage.setItem(APP_CONFIG.STORAGE_KEYS.USUARIOS, JSON.stringify(list));
+    return list;
+  }
+
+  toggleUsuarioEstado(id_usuario) {
+    const list = this.getUsuarios();
+    const user = list.find(u => u.id_usuario === id_usuario);
+    if (user) {
+      user.estado = user.estado === 'ACTIVO' ? 'INACTIVO' : 'ACTIVO';
+      user.fecha_actualizacion = new Date().toISOString().replace('T', ' ').substring(0, 19);
+      localStorage.setItem(APP_CONFIG.STORAGE_KEYS.USUARIOS, JSON.stringify(list));
+    }
+    return list;
+  }
+
+  verificarAccesoLocal(correo, rolRequerido) {
+    const usuarios = this.getUsuarios();
+    const emailNorm = (correo || '').toLowerCase().trim();
+    const rolNorm = (rolRequerido || '').toUpperCase().trim();
+
+    const user = usuarios.find(u => (u.correo || '').toLowerCase().trim() === emailNorm && u.estado === 'ACTIVO');
+    if (!user) {
+      return { autorizado: false, mensaje: 'El correo no se encuentra registrado o está inactivo en el sistema.' };
+    }
+
+    if (user.rol === 'ADMINISTRADOR' || user.rol === rolNorm) {
+      return { autorizado: true, usuario: user };
+    }
+
+    return { autorizado: false, mensaje: `El correo ${correo} tiene rol ${user.rol} y no puede acceder al perfil ${rolRequerido}.` };
+  }
+
   // --- MÉTODOS DE BORRADOR ---
   saveBorrador(data) {
     localStorage.setItem(APP_CONFIG.STORAGE_KEYS.BORRADOR, JSON.stringify(data));

@@ -67,6 +67,26 @@ function doPost(e) {
         result = DashboardService.obtenerDashboard();
         break;
 
+      case 'obtenerUsuarios':
+        result = UsuariosService.obtenerUsuarios();
+        break;
+
+      case 'guardarUsuario':
+        result = UsuariosService.guardarUsuario(postData.usuario);
+        break;
+
+      case 'eliminarUsuario':
+        result = UsuariosService.eliminarUsuario(postData.id_usuario);
+        break;
+
+      case 'cambiarEstadoUsuario':
+        result = UsuariosService.cambiarEstadoUsuario(postData.id_usuario, postData.estado);
+        break;
+
+      case 'verificarAcceso':
+        result = UsuariosService.verificarAcceso(postData.correo, postData.rol);
+        break;
+
       default:
         throw new Error('Acción no reconocida: ' + action);
     }

@@ -173,6 +173,47 @@ class SedApiClient {
     return Promise.resolve({ success: true, data: list });
   }
 
+  // --- GESTIÓN DE USUARIOS Y ACCESOS ---
+  async obtenerUsuarios() {
+    if (this.useGasBackend) {
+      return this._callGas('obtenerUsuarios');
+    }
+    const data = db.getUsuarios();
+    return Promise.resolve({ success: true, data });
+  }
+
+  async guardarUsuario(usuario) {
+    if (this.useGasBackend) {
+      return this._callGas('guardarUsuario', { usuario });
+    }
+    const data = db.saveUsuario(usuario);
+    return Promise.resolve({ success: true, data, message: 'Usuario guardado exitosamente.' });
+  }
+
+  async eliminarUsuario(id_usuario) {
+    if (this.useGasBackend) {
+      return this._callGas('eliminarUsuario', { id_usuario });
+    }
+    const data = db.deleteUsuario(id_usuario);
+    return Promise.resolve({ success: true, data, message: 'Usuario eliminado.' });
+  }
+
+  async cambiarEstadoUsuario(id_usuario, estado) {
+    if (this.useGasBackend) {
+      return this._callGas('cambiarEstadoUsuario', { id_usuario, estado });
+    }
+    const data = db.toggleUsuarioEstado(id_usuario);
+    return Promise.resolve({ success: true, data });
+  }
+
+  async verificarAcceso(correo, rol) {
+    if (this.useGasBackend) {
+      return this._callGas('verificarAcceso', { correo, rol });
+    }
+    const result = db.verificarAccesoLocal(correo, rol);
+    return Promise.resolve({ success: true, data: result });
+  }
+
   // --- PETICIÓN HTTP A GOOGLE APPS SCRIPT ---
   async _callGas(action, params = {}) {
     if (!this.endpointUrl) {

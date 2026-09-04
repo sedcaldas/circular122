@@ -27,22 +27,12 @@ class SedApp {
         });
       });
 
-      // 3. Evento Selector de Roles
+      // 3. Evento Selector de Roles con Control de Accesos
       const roleSelect = document.getElementById('headerRoleSelect');
       if (roleSelect) {
         roleSelect.addEventListener('change', (e) => {
           const newRole = e.target.value;
-          const userMatch = SED_USUARIOS_INICIALES.find(u => u.rol === newRole) || {
-            id_usuario: 'USR-TEMP',
-            nombre: 'Usuario Consulta',
-            cargo: 'Ciudadano',
-            correo: 'consulta@sedcaldas.edu.co',
-            municipio: 'TODOS',
-            codigo_establecimiento: '',
-            rol: newRole
-          };
-          auth.setCurrentUser(userMatch);
-          this.showToast(`Perfil cambiado a: ${newRole}`, 'info');
+          auth.requestRoleChange(newRole);
         });
       }
 
