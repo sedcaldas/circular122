@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planes de Contingencia | SEDCALDAS - Secretaría de Educación de Caldas</title>
+  <meta name="description"
+    content="Sistema Institucional de Gestión y Seguimiento de Planes de Contingencia ante la Emergencia Sísmica - Circular Nº 122 - Secretaría de Educación Departamental de Caldas">
+  <meta name="theme-color" content="#007a33">
+  <link rel="icon" type="image/svg+xml" href="assets/logo-sedcaldas.svg">
+
+  <!-- Tipografía Oficial: Montserrat, Barlow e Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <!-- =========================================================================
+       1. BARRA SUPERIOR INSTITUCIONAL (Top Toolbar SEDCALDAS)
+       ========================================================================= -->
+  <div class="top-toolbar">
+    <div class="toolbar-container">
+      <div class="toolbar-left">
+        <span class="toolbar-entity">Gobernación de Caldas | Secretaría de Educación Departamental</span>
+      </div>
+      <div class="toolbar-right">
+        <a href="https://outlook.live.com/owa/?nlp=1" target="_blank" rel="noopener" class="toolbar-link">
+          ✉️ Correo Interno
+        </a>
+        <span class="toolbar-divider">|</span>
+        <a href="http://sgi.caldas.gov.co/" target="_blank" rel="noopener" class="toolbar-link">
+          🛡️ SGC
+        </a>
+        <span class="toolbar-divider">|</span>
+        <a href="http://sac2.gestionsecretariasdeeducacion.gov.co/app_Login/?sec=15" target="_blank" rel="noopener"
+          class="toolbar-link">
+          📋 SAC II (PQRSD)
+        </a>
+        <span class="toolbar-divider">|</span>
+
+        <!-- Indicador de Entorno -->
+        <span class="env-badge demo" id="headerEnvBadge">MODO LOCAL / DEMO</span>
+
+        <!-- Selector de Perfil / Rol -->
+        <div class="user-role-control">
+          <span>👤 Perfil:</span>
+          <select id="headerRoleSelect" class="role-select" title="Seleccionar Perfil de Usuario">
+            <option value="RECTOR">Rector / Directivo IE</option>
+            <option value="COORDINADOR">Coordinador SED</option>
+            <option value="ADMINISTRADOR">Administrador SED</option>
+            <option value="CONSULTA">Consulta Pública</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       2. CABECERA PRINCIPAL (Logo Oficial SEDCALDAS)
+       ========================================================================= -->
+  <header class="main-header">
+    <div class="header-container">
+      <div class="header-brand-wrap">
+        <a href="https://educacion.caldas.gov.co/" target="_blank" title="Secretaría de Educación de Caldas">
+          <img src="assets/logo-sedcaldas_2024.png" alt="Logo SEDCALDAS 2024 - Secretaría de Educación de Caldas"
+            class="brand-logo-img" width="450" height="60"
+            onerror="this.onerror=null; this.src='https://educacion.caldas.gov.co/images/banners/logo-sedcaldas_2024.png';">
+        </a>
+      </div>
+
+      <div class="header-meta-box">
+        <div class="circular-badge-box">
+          <div class="circular-badge-title">CIRCULAR Nº 122 DE 2026</div>
+          <div class="circular-badge-sub">Planes de Contingencia Escolar – Emergencia Sísmica</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       3. BARRA DE NAVEGACIÓN INSTITUCIONAL VERDE (SED Navbar)
+       ========================================================================= -->
+  <nav class="sed-navbar" aria-label="Navegación del Sistema">
+    <div class="navbar-container">
+      <ul class="nav-menu">
+        <li>
+          <button class="nav-item-btn active" data-tab="formulario" id="tab-nav-formulario">
+            📝 Radicación de Plan
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="consultas" id="tab-nav-consultas">
+            🔍 Consulta y Trazabilidad
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="evaluacion" id="tab-nav-evaluacion">
+            ✍️ Bandeja de Evaluación
+            <span class="nav-badge-count" id="evalTabPendingBadge">3</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="dashboard" id="tab-nav-dashboard">
+            📊 Dashboard Directivo
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="admin" id="tab-nav-admin">
+            ⚙️ Administración y Auditoría
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- =========================================================================
+       CONTENEDOR PRINCIPAL
+       ========================================================================= -->
+  <main class="main-wrapper">
+
+    <!-- Cinta de Avisos Institucional -->
+    <div class="ticker-section">
+      <div class="ticker-content">
+        <div class="ticker-icon">🏛️</div>
+        <div>
+          <div class="ticker-title">Circular Nº 122 del 24 de agosto de 2026 – Secretaría de Educación de Caldas</div>
+          <div class="ticker-subtitle">Directrices institucionales y planes de contingencia para garantizar la
+            continuidad del servicio educativo en los 26 municipios no certificados de Caldas.</div>
+        </div>
+      </div>
+      <div
+        style="font-size: 0.8rem; font-weight: 700; background: rgba(0,0,0,0.25); padding: 0.35rem 0.8rem; border-radius: var(--radius-sm);">
+        Vigencia 2026
+      </div>
+    </div>
+
+    <!-- =========================================================================
+         MÓDULO 1: FORMULARIO DE ENVÍO DE PLANES DE CONTINGENCIA (RECTOR)
+         ========================================================================= -->
+    <section class="tab-panel active" id="tab-formulario">
+
+      <!-- Banner de Reanudación de Borrador -->
+      <div id="draftResumeBanner"
+        style="display: none; background: #fffbeb; border: 1.5px solid #fef08a; padding: 1rem 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <span style="font-size: 1.5rem;">💾</span>
+          <div>
+            <strong style="color: #92400e;">Borrador Detectado</strong>
+            <div style="font-size: 0.85rem; color: #b45309;" id="draftResumeInfo">Existe información diligenciada
+              previamente.</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 0.5rem;">
+          <button type="button" class="btn btn-secondary btn-sm"
+            onclick="formController.discardDraft()">Descartar</button>
+          <button type="button" class="btn btn-accent btn-sm" onclick="formController.restoreDraft()">Restaurar
+            Borrador</button>
+        </div>
+      </div>
+
+      <!-- Contenedor del Asistente Wizard -->
+      <div id="formWizardContainer">
+        <!-- Stepper Visual -->
+        <div class="stepper-container">
+          <div class="step-item active" data-step="1">
+            <div class="step-bubble">1</div>
+            <div class="step-label">Identificación IE</div>
+          </div>
+          <div class="step-item" data-step="2">
+            <div class="step-bubble">2</div>
+            <div class="step-label">Sedes Afectadas</div>
+          </div>
+          <div class="step-item" data-step="3">
+            <div class="step-bubble">3</div>
+            <div class="step-label">Responsable</div>
+          </div>
+          <div class="step-item" data-step="4">
+            <div class="step-bubble">4</div>
+            <div class="step-label">Carga Documental</div>
+          </div>
+        </div>
+
+        <!-- PASO 1: IDENTIFICACIÓN INSTITUCIONAL -->
+        <div class="form-step-section active" id="step-section-1">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Paso 1: Identificación Institucional</div>
+                <div class="card-subtitle">Seleccione el municipio y la institución educativa oficial del catálogo
+                  departamental (26 municipios no certificados).</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="form-grid">
+                <div class="col-6 form-group">
+                  <label class="form-label" for="formMunicipio">
+                    Municipio <span class="required-mark">*</span>
+                  </label>
+                  <select id="formMunicipio" class="form-control" required>
+                    <option value="">-- Seleccione Municipio --</option>
+                  </select>
+                  <div class="form-hint">26 municipios no certificados bajo jurisdicción de la SED Caldas.</div>
+                </div>
+
+                <div class="col-6 form-group">
+                  <label class="form-label" for="formInstitucion">
+                    Institución Educativa Oficial <span class="required-mark">*</span>
+                  </label>
+                  <select id="formInstitucion" class="form-control" disabled required>
+                    <option value="">-- Seleccione Municipio Primero --</option>
+                  </select>
+                  <div class="form-hint">Filtro automático de establecimientos educativos oficiales.</div>
+                </div>
+
+                <div class="col-12 form-group">
+                  <label class="form-label" for="formCodigoDane">
+                    Código DANE del Establecimiento (Identificador Institucional)
+                  </label>
+                  <input type="text" id="formCodigoDane" class="form-control" readonly
+                    placeholder="Se autocompleta automáticamente al elegir institución">
+                  <div class="form-hint">El código DANE es el identificador del establecimiento educativo.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PASO 2: SELECCIÓN DE SEDES AFECTADAS (CATÁLOGO OFICIAL) -->
+        <div class="form-step-section" id="step-section-2">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Paso 2: Selección de Sedes y Nivel de Afectación</div>
+                <div class="card-subtitle">Seleccione del catálogo oficial las sedes educativas que presentan afectación
+                  sísmica y su modalidad pedagógica.</div>
+              </div>
+              <button type="button" class="btn btn-secondary btn-sm" id="btnAddAllSedes">
+                ➕ Cargar Todas las Sedes de la IE
+              </button>
+            </div>
+            <div class="card-body">
+              <div
+                style="background: var(--bg-subtle); padding: 1.25rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border: 1px solid var(--border-light);">
+                <div style="font-weight: 700; color: var(--brand-primary-dark); margin-bottom: 0.75rem;">
+                  🏫 Seleccionar Sede del Catálogo Oficial
+                </div>
+
+                <div class="form-grid">
+                  <div class="col-12 form-group" style="margin-bottom: 0.5rem;">
+                    <label class="form-label" for="selectNuevaSedeCatalogo">
+                      Sedes Asociadas a la Institución Educativa:
+                    </label>
+                    <select id="selectNuevaSedeCatalogo" class="form-control" disabled>
+                      <option value="">-- Seleccione Institución en el Paso 1 Primero --</option>
+                    </select>
+                    <div class="form-hint">Listado oficial de sedes y códigos DANE sede de la institución seleccionada.
+                    </div>
+                  </div>
+
+                  <div class="col-5 form-group">
+                    <label class="form-label">Nombre de Sede</label>
+                    <input type="text" id="inputNuevaSedeNombre" class="form-control" placeholder="Nombre de la sede">
+                  </div>
+
+                  <div class="col-2 form-group">
+                    <label class="form-label">Código Sede</label>
+                    <input type="text" id="inputNuevaSedeCodigo" class="form-control" placeholder="DANE Sede">
+                  </div>
+
+                  <div class="col-3 form-group">
+                    <label class="form-label">Nivel de Afectación</label>
+                    <select id="selectNuevaSedeNivel" class="form-control">
+                      <option value="Leve">Afectación Leve (Sin riesgo estructural)</option>
+                      <option value="Moderada">Afectación Moderada (Áreas restringidas)</option>
+                      <option value="Severa">Afectación Severa (Inhabitable / Evacuada)</option>
+                      <option value="Sin Afectacion">Sin Afectación (Sede habilitada)</option>
+                    </select>
+                  </div>
+
+                  <div class="col-2 form-group">
+                    <label class="form-label">Modalidad</label>
+                    <select id="selectNuevaSedeMod" class="form-control">
+                      <option value="Alternancia">Alternancia</option>
+                      <option value="Reubicacion">Reubicación Temporal</option>
+                      <option value="Guias Impresas">Guías Impresas</option>
+                      <option value="Virtual">Virtual / Remota</option>
+                      <option value="Presencial Normal">Presencial Normal</option>
+                    </select>
+                  </div>
+
+                  <div class="col-12" style="display: flex; justify-content: flex-end;">
+                    <button type="button" class="btn btn-primary" id="btnAddSede">
+                      ➕ Agregar Sede a la Lista
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tabla de Sedes Agregadas -->
+              <div class="table-responsive">
+                <table class="table-sed">
+                  <thead>
+                    <tr>
+                      <th>Código Sede</th>
+                      <th>Nombre de Sede</th>
+                      <th>Nivel de Afectación</th>
+                      <th>Modalidad de Atención</th>
+                      <th style="text-align: right;">Acción</th>
+                    </tr>
+                  </thead>
+                  <tbody id="sedesTableBody">
+                    <!-- Filas dinámicas -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PASO 3: DATOS DEL RESPONSABLE -->
+        <div class="form-step-section" id="step-section-3">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Paso 3: Datos del Responsable del Envío</div>
+                <div class="card-subtitle">Información de contacto del rector o directivo docente autorizado para
+                  recibir notificaciones oficiales.</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="form-grid">
+                <div class="col-6 form-group">
+                  <label class="form-label" for="formRespNombre">
+                    Nombre Completo del Directivo / Responsable <span class="required-mark">*</span>
+                  </label>
+                  <input type="text" id="formRespNombre" class="form-control" placeholder="Ej: Marino Gómez Estrada"
+                    required>
+                </div>
+
+                <div class="col-6 form-group">
+                  <label class="form-label" for="formRespCargo">
+                    Cargo Institucional <span class="required-mark">*</span>
+                  </label>
+                  <input type="text" id="formRespCargo" class="form-control" placeholder="Ej: Rector / Rector Encargado"
+                    required>
+                </div>
+
+                <div class="col-6 form-group">
+                  <label class="form-label" for="formRespCorreo">
+                    Correo Electrónico Institucional (para notificaciones) <span class="required-mark">*</span>
+                  </label>
+                  <input type="email" id="formRespCorreo" class="form-control" placeholder="rectoria@sedcaldas.edu.co"
+                    required>
+                  <div class="form-hint">A este correo se enviará la constancia y el dictamen oficial de la SED.</div>
+                </div>
+
+                <div class="col-6 form-group">
+                  <label class="form-label" for="formRespTel">
+                    Teléfono Celular / Contacto Directo <span class="required-mark">*</span>
+                  </label>
+                  <input type="tel" id="formRespTel" class="form-control" placeholder="Ej: 3101234567" required>
+                </div>
+
+                <div class="col-12 form-group">
+                  <label class="form-label" for="formRespObservaciones">
+                    Observaciones Generales Institucionales (Opcional)
+                  </label>
+                  <textarea id="formRespObservaciones" class="form-control" rows="2"
+                    placeholder="Información adicional sobre la situación del establecimiento..."></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PASO 4: CARGA DOCUMENTAL -->
+        <div class="form-step-section" id="step-section-4">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Paso 4: Carga de Documentos Oficiales (Circular 122)</div>
+                <div class="card-subtitle">Adjunte los 6 archivos requeridos en formato PDF, DOCX, XLSX o Imagen (Máximo
+                  10 MB por archivo).</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="doc-upload-grid" id="docCardsContainer">
+                <!-- Tarjetas dinámicas de los 6 tipos de documentos -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Barra Inferior de Control de Pasos -->
+        <div
+          style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <button type="button" class="btn btn-secondary" id="btnSaveDraft">
+              💾 Guardar Borrador
+            </button>
+          </div>
+          <div style="display: flex; gap: 0.75rem;">
+            <button type="button" class="btn btn-secondary" id="btnPrevStep" style="display: none;">
+              ← Paso Anterior
+            </button>
+            <button type="button" class="btn btn-primary" id="btnNextStep">
+              Siguiente Paso →
+            </button>
+            <button type="button" class="btn btn-accent btn-lg" id="btnReviewSubmit" style="display: none;">
+              📋 Revisar y Radicar Envío
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pantalla de Éxito / Constancia de Radicación -->
+      <div id="formSuccessContainer" style="display: none;">
+        <div class="card"
+          style="text-align: center; padding: 2.5rem 1.5rem; max-width: 800px; margin: 0 auto; border-top: 6px solid var(--brand-primary);">
+          <div style="font-size: 3.5rem; margin-bottom: 1rem;">✅</div>
+          <h2 style="color: var(--brand-primary-dark); margin-bottom: 0.5rem;">¡Plan de Contingencia Radicado
+            Exitosamente!</h2>
+          <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+            La información y documentación institucional han sido recibidas satisfactoriamente por la Secretaría de
+            Educación de Caldas.
+          </p>
+
+          <div
+            style="background: var(--bg-subtle); padding: 1.5rem; border-radius: var(--radius-md); text-align: left; margin-bottom: 1.75rem; border: 1px solid var(--border-light);">
+            <div
+              style="display: flex; justify-content: space-between; margin-bottom: 0.75rem; border-bottom: 1px solid var(--border-light); padding-bottom: 0.5rem;">
+              <span style="color: var(--text-muted);">Número de Radicado Oficial:</span>
+              <strong style="color: var(--brand-primary-dark); font-size: 1.1rem;"
+                id="successRadicadoNum">ENV-2026-000000</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+              <span style="color: var(--text-muted);">Institución Educativa:</span>
+              <strong id="successInstNombre">-</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+              <span style="color: var(--text-muted);">Versión Radicada:</span>
+              <span class="badge badge-sent" id="successVersionNum">Versión 01</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+              <span style="color: var(--text-muted);">Fecha y Hora de Recepción:</span>
+              <span id="successFechaHora">-</span>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--text-muted);">Notificación enviada a:</span>
+              <strong id="successEmailSentTo">-</strong>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+            <button type="button" class="btn btn-secondary" onclick="window.print()">
+              🖨️ Imprimir Constancia
+            </button>
+            <button type="button" class="btn btn-primary" onclick="formController.resetForm()">
+              ➕ Radicar Otro Plan
+            </button>
+            <button type="button" class="btn btn-accent" onclick="app.switchTab('consultas')">
+              🔍 Ir a Consulta y Seguimiento
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- =========================================================================
+         MÓDULO 2: CONSULTA Y TRAZABILIDAD DE ENVÍOS (PÚBLICO / RECTOR)
+         ========================================================================= -->
+    <section class="tab-panel" id="tab-consultas">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">🔍 Consulta y Trazabilidad de Planes de Contingencia</div>
+            <div class="card-subtitle">Verifique el estado de radicación, revisiones y dictámenes emitidos por la SED
+              Caldas.</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <!-- Filtros de Búsqueda -->
+          <div class="form-grid" style="margin-bottom: 1.5rem;">
+            <div class="col-6 form-group">
+              <label class="form-label" for="inputConsultaSearch">Buscar por Código DANE, Radicado o Nombre IE</label>
+              <input type="text" id="inputConsultaSearch" class="form-control"
+                placeholder="Ej: 117013000306 o ENV-2026-000101 o Marino Gomez">
+            </div>
+            <div class="col-3 form-group">
+              <label class="form-label" for="selectConsultaMunicipio">Municipio</label>
+              <select id="selectConsultaMunicipio" class="form-control">
+                <option value="TODOS">-- Todos los Municipios --</option>
+              </select>
+            </div>
+            <div class="col-3 form-group">
+              <label class="form-label" for="selectConsultaEstado">Estado del Proceso</label>
+              <select id="selectConsultaEstado" class="form-control">
+                <option value="TODOS">-- Todos los Estados --</option>
+                <option value="ENVIADO">Enviado</option>
+                <option value="EN_REVISION">En Revisión</option>
+                <option value="REQUIERE_CORRECCION">Requiere Corrección</option>
+                <option value="APROBADO">Aprobado</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <span id="consultaResultCount" style="font-size: 0.88rem; font-weight: 700; color: var(--text-muted);">
+              Cargando registros...
+            </span>
+            <button type="button" class="btn btn-primary btn-sm" id="btnConsultaBuscar">
+              🔎 Buscar Registros
+            </button>
+          </div>
+
+          <!-- Tabla de Resultados -->
+          <div class="table-responsive">
+            <table class="table-sed">
+              <thead>
+                <tr>
+                  <th>Radicado</th>
+                  <th>Municipio</th>
+                  <th>Institución Educativa</th>
+                  <th>Versión</th>
+                  <th>Fecha Envío</th>
+                  <th>Estado</th>
+                  <th style="text-align: right;">Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="tablaConsultasBody">
+                <!-- Filas dinámicas -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         MÓDULO 3: BANDEJA DE EVALUACIÓN (COORDINADOR)
+         ========================================================================= -->
+    <section class="tab-panel" id="tab-evaluacion">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">✍️ Bandeja de Revisión y Evaluación Técnica (Coordinador)</div>
+            <div class="card-subtitle">Evalúe los documentos cargados por las instituciones educativas según los
+              criterios parametrizados.</div>
+          </div>
+          <span class="badge badge-review" id="evalPendingCount">0 pendientes de revisión</span>
+        </div>
+        <div class="card-body">
+          <!-- Filtros de Evaluación -->
+          <div class="form-grid" style="margin-bottom: 1.5rem;">
+            <div class="col-6 form-group">
+              <label class="form-label" for="selectEvalMunicipio">Filtrar por Municipio</label>
+              <select id="selectEvalMunicipio" class="form-control">
+                <option value="TODOS">-- Todos los Municipios --</option>
+              </select>
+            </div>
+            <div class="col-4 form-group">
+              <label class="form-label" for="selectEvalEstado">Estado</label>
+              <select id="selectEvalEstado" class="form-control">
+                <option value="TODOS">-- Todos los Estados --</option>
+                <option value="EN_REVISION" selected>En Revisión / Pendientes</option>
+                <option value="REQUIERE_CORRECCION">Requiere Corrección</option>
+                <option value="APROBADO">Aprobados</option>
+              </select>
+            </div>
+            <div class="col-2 form-group" style="justify-content: flex-end;">
+              <button type="button" class="btn btn-secondary" id="btnEvalRefrescar" style="width: 100%; height: 42px;">
+                🔄 Refrescar
+              </button>
+            </div>
+          </div>
+
+          <!-- Tabla de Envíos Pendientes -->
+          <div class="table-responsive">
+            <table class="table-sed">
+              <thead>
+                <tr>
+                  <th>Radicado</th>
+                  <th>Municipio</th>
+                  <th>Institución Educativa</th>
+                  <th>Versión</th>
+                  <th>Fecha Recepción</th>
+                  <th>Estado</th>
+                  <th style="text-align: right;">Acción</th>
+                </tr>
+              </thead>
+              <tbody id="tablaEvaluacionBody">
+                <!-- Filas dinámicas -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         MÓDULO 4: DASHBOARD Y ANALÍTICA (DIRECTIVOS)
+         ========================================================================= -->
+    <section class="tab-panel" id="tab-dashboard">
+      <!-- Grid de KPIs -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div>
+            <div class="kpi-title">Total IEs Caldas</div>
+            <div class="kpi-value" id="kpiTotalIEs">163</div>
+            <div style="font-size: 0.78rem; color: var(--text-muted);">26 Municipios no certificados</div>
+          </div>
+          <div class="kpi-icon-wrap" style="background: #e8f5ed; color: #007a33;">🏫</div>
+        </div>
+
+        <div class="kpi-card">
+          <div>
+            <div class="kpi-title">Planes Radicados</div>
+            <div class="kpi-value" id="kpiRadicados">0</div>
+            <div style="font-size: 0.78rem; color: #007a33;" id="kpiPctRadicados">0% de cobertura</div>
+          </div>
+          <div class="kpi-icon-wrap" style="background: #eff6ff; color: #1d4ed8;">📬</div>
+        </div>
+
+        <div class="kpi-card">
+          <div>
+            <div class="kpi-title">En Revisión</div>
+            <div class="kpi-value" id="kpiEnRevision">0</div>
+            <div style="font-size: 0.78rem; color: #d97706;">Pendientes de dictamen</div>
+          </div>
+          <div class="kpi-icon-wrap" style="background: #fefce8; color: #a16207;">⏳</div>
+        </div>
+
+        <div class="kpi-card">
+          <div>
+            <div class="kpi-title">Aprobados</div>
+            <div class="kpi-value" id="kpiAprobados">0</div>
+            <div style="font-size: 0.78rem; color: #007a33;" id="kpiPctAprobados">0% del total</div>
+          </div>
+          <div class="kpi-icon-wrap" style="background: #e8f5ed; color: #007a33;">✅</div>
+        </div>
+
+        <div class="kpi-card">
+          <div>
+            <div class="kpi-title">Con Correcciones</div>
+            <div class="kpi-value" id="kpiCorreccion">0</div>
+            <div style="font-size: 0.78rem; color: #da291c;">Subsanación requerida</div>
+          </div>
+          <div class="kpi-icon-wrap" style="background: #fff1f2; color: #be123c;">⚠️</div>
+        </div>
+      </div>
+
+      <!-- Sección de Gráficos -->
+      <div
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+        <div class="card" style="margin-bottom: 0;">
+          <div class="card-header">
+            <div class="card-title">Distribución por Estado de los Planes</div>
+          </div>
+          <div class="card-body" style="display: flex; justify-content: center; align-items: center;">
+            <canvas id="chartEstadosCanvas" width="340" height="240"></canvas>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 0;">
+          <div class="card-header">
+            <div class="card-title">Planes Radicados por Municipio (Top Municipios)</div>
+          </div>
+          <div class="card-body" style="display: flex; justify-content: center; align-items: center;">
+            <canvas id="chartMunicipiosCanvas" width="400" height="240"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabla Resumen Municipal -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Consolidado Departamental por Municipio (26 Municipios)</div>
+          <div style="display: flex; gap: 0.5rem;">
+            <button type="button" class="btn btn-secondary btn-sm" id="btnDashboardPrint">
+              🖨️ Imprimir Reporte
+            </button>
+            <button type="button" class="btn btn-accent btn-sm" id="btnDashboardExportCsv">
+              📥 Exportar Excel / CSV
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table-sed">
+              <thead>
+                <tr>
+                  <th>Municipio</th>
+                  <th>Total IEs</th>
+                  <th>Radicados</th>
+                  <th>Aprobados</th>
+                  <th>En Revisión</th>
+                  <th>Requieren Corrección</th>
+                  <th>% Aprobación</th>
+                </tr>
+              </thead>
+              <tbody id="tablaResumenMunicipalBody">
+                <!-- Filas dinámicas -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         MÓDULO 5: ADMINISTRACIÓN Y AUDITORÍA
+         ========================================================================= -->
+    <section class="tab-panel" id="tab-admin">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">⚙️ Módulo de Administración, Criterios y Trazabilidad</div>
+        </div>
+        <div class="card-body">
+          <!-- Subpestañas de Administración -->
+          <div
+            style="display: flex; gap: 0.5rem; border-bottom: 2px solid var(--border-light); margin-bottom: 1.5rem; overflow-x: auto;">
+            <button type="button" class="admin-subtab-btn active btn btn-sm btn-secondary" data-subtab="criterios">
+              📋 Criterios de Evaluación
+            </button>
+            <button type="button" class="admin-subtab-btn btn btn-sm btn-secondary" data-subtab="coordinadores">
+              👥 Asignación de Coordinadores
+            </button>
+            <button type="button" class="admin-subtab-btn btn btn-sm btn-secondary" data-subtab="auditoria">
+              🛡️ Registro de Auditoría (AUDITORIA)
+            </button>
+            <button type="button" class="admin-subtab-btn btn btn-sm btn-secondary" data-subtab="config">
+              🔌 Conexión Backend Google Apps Script
+            </button>
+          </div>
+
+          <!-- Subtab 1: Criterios -->
+          <div class="admin-subtab-pane active" id="admin-pane-criterios">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <p style="font-size: 0.88rem; color: var(--text-muted);">Parámetros de calificación dinámicos para los
+                coordinadores evaluadores.</p>
+              <button type="button" class="btn btn-primary btn-sm" id="btnOpenNewCriterioModal">
+                ➕ Nuevo Criterio
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table class="table-sed">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Documento</th>
+                    <th>Criterio</th>
+                    <th>Descripción</th>
+                    <th>Obligatorio</th>
+                    <th>Estado</th>
+                    <th style="text-align: right;">Acción</th>
+                  </tr>
+                </thead>
+                <tbody id="tablaAdminCriteriosBody">
+                  <!-- Filas dinámicas -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Subtab 2: Coordinadores y Asignaciones -->
+          <div class="admin-subtab-pane" id="admin-pane-coordinadores" style="display: none;">
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem;">Asignación de municipios a
+              funcionarios coordinadores de la Secretaría de Educación.</p>
+            <div class="table-responsive">
+              <table class="table-sed">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Municipio</th>
+                    <th>Coordinador Responsable</th>
+                    <th>Estado</th>
+                  </tr>
+                </thead>
+                <tbody id="tablaAdminAsignacionesBody">
+                  <!-- Filas dinámicas -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Subtab 3: Auditoría -->
+          <div class="admin-subtab-pane" id="admin-pane-auditoria" style="display: none;">
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem;">Registro transaccional de
+              seguridad (log de todas las operaciones realizadas en el sistema).</p>
+            <div class="table-responsive">
+              <table class="table-sed">
+                <thead>
+                  <tr>
+                    <th>Fecha / Hora</th>
+                    <th>Usuario</th>
+                    <th>Rol</th>
+                    <th>Acción</th>
+                    <th>Municipio</th>
+                    <th>Resultado</th>
+                    <th>Detalle</th>
+                  </tr>
+                </thead>
+                <tbody id="tablaAdminAuditoriaBody">
+                  <!-- Filas dinámicas -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Subtab 4: Configuración Backend GAS -->
+          <div class="admin-subtab-pane" id="admin-pane-config" style="display: none;">
+            <div style="max-width: 700px;">
+              <h4 style="color: var(--brand-primary-dark); margin-bottom: 0.5rem;">Vinculación con Google Apps Script
+                Web App</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+                Si despliega el script contenido en la carpeta <code>gas/</code> como Aplicación Web (Web App) de Google
+                Apps Script, pegue aquí la URL de ejecución generada. Deje vacío para utilizar el modo local /
+                simulación.
+              </p>
+              <div class="form-group" style="margin-bottom: 1rem;">
+                <label class="form-label" for="inputGasWebAppUrl">URL de Ejecución del Web App (Google Apps
+                  Script):</label>
+                <input type="url" id="inputGasWebAppUrl" class="form-control"
+                  placeholder="https://script.google.com/macros/s/.../exec">
+              </div>
+              <button type="button" class="btn btn-primary" id="btnSaveGasUrl">
+                💾 Guardar Configuración de Conexión
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================
+       MODALES DIÁLOGOS
+       ========================================== -->
+
+  <!-- Modal 1: Resumen previo al Envío -->
+  <div class="modal-overlay" id="modalReviewEnvio">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title">📋 Resumen del Plan de Contingencia a Radicar</div>
+        <button type="button" class="modal-close-btn" onclick="formController.closeReviewModal()">✕</button>
+      </div>
+      <div class="modal-body" id="modalReviewContent">
+        <!-- Contenido dinámico -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="formController.closeReviewModal()">Volver y
+          Editar</button>
+        <button type="button" class="btn btn-accent btn-lg" id="btnConfirmSubmit">✓ Confirmar y Radicar Envío</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Detalle y Trazabilidad de Envío -->
+  <div class="modal-overlay" id="modalConsultaDetail">
+    <div class="modal-box modal-lg">
+      <div class="modal-header">
+        <div class="modal-title">🔍 Detalle y Trazabilidad del Envío</div>
+        <button type="button" class="modal-close-btn" onclick="consultasController.closeDetalleModal()">✕</button>
+      </div>
+      <div class="modal-body" id="modalConsultaDetailContent">
+        <!-- Contenido dinámico -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+          onclick="consultasController.closeDetalleModal()">Cerrar</button>
+        <button type="button" class="btn btn-accent" id="btnSubsanarEnvio" style="display: none;">
+          📝 Subsanar / Radicar Nueva Versión
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Evaluación Documental (Coordinador) -->
+  <div class="modal-overlay" id="modalEvaluacion">
+    <div class="modal-box modal-lg">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title" id="evalModalTitle">Evaluación Documental</div>
+          <div style="font-size: 0.82rem; color: var(--text-muted);" id="evalModalSub">-</div>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="evaluacionController.closeModalEvaluacion()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div id="evalDocsListContainer">
+          <!-- Lista de documentos con checklist de criterios -->
+        </div>
+
+        <div class="form-group"
+          style="margin-top: 1.5rem; background: var(--bg-subtle); padding: 1.25rem; border-radius: var(--radius-md);">
+          <label class="form-label" style="font-weight: 700;">Dictamen General / Recomendaciones Globales:</label>
+          <textarea id="evalObservacionesGenerales" class="form-control" rows="3"
+            placeholder="Síntesis de la evaluación técnica para la institución educativa..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+          onclick="evaluacionController.closeModalEvaluacion()">Cancelar</button>
+        <button type="button" class="btn btn-primary btn-lg" onclick="evaluacionController.guardarEvaluacionCompleta()">
+          💾 Guardar Dictamen y Notificar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4: Vista Previa de Notificación por Correo -->
+  <div class="modal-overlay" id="modalEmailPreview">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title">✉️ Notificación Oficial Emitida por Correo</div>
+        <button type="button" class="modal-close-btn" onclick="evaluacionController.closeEmailPreviewModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div style="margin-bottom: 0.75rem; font-size: 0.88rem;">
+          <div><strong>Para:</strong> <span id="modalEmailPreviewTo">-</span></div>
+          <div><strong>Asunto:</strong> <span id="modalEmailPreviewSubject">-</span></div>
+        </div>
+        <div id="modalEmailPreviewBody">
+          <!-- Contenido del correo -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary"
+          onclick="evaluacionController.closeEmailPreviewModal()">Entendido</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 5: Crear / Editar Criterio (Admin) -->
+  <div class="modal-overlay" id="modalAdminCriterio">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title">➕ Parámetro / Criterio de Evaluación</div>
+        <button type="button" class="modal-close-btn" onclick="adminController.closeModalCriterio()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="col-12 form-group">
+            <label class="form-label">Tipo de Documento Aplicable</label>
+            <select id="critFormTipoDoc" class="form-control"></select>
+          </div>
+          <div class="col-12 form-group">
+            <label class="form-label">Nombre del Criterio</label>
+            <input type="text" id="critFormNombre" class="form-control" placeholder="Ej: Adopción formal del plan...">
+          </div>
+          <div class="col-12 form-group">
+            <label class="form-label">Descripción Detallada / Guía de Verificación</label>
+            <textarea id="critFormDesc" class="form-control" rows="3"
+              placeholder="Indique qué debe verificar el coordinador..."></textarea>
+          </div>
+          <div class="col-6 form-group">
+            <label class="form-label">¿Es Obligatorio para Aprobación?</label>
+            <select id="critFormObligatorio" class="form-control">
+              <option value="SI">SI (Debe cumplir para aprobar)</option>
+              <option value="NO">NO (Criterio complementario)</option>
+            </select>
+          </div>
+          <div class="col-6 form-group">
+            <label class="form-label">Estado</label>
+            <select id="critFormActivo" class="form-control">
+              <option value="SI">Activo</option>
+              <option value="NO">Inactivo</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="adminController.closeModalCriterio()">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="btnSaveCriterio">Guardar Criterio</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay"
+    style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 45, 19, 0.75); backdrop-filter: blur(5px); z-index: 4000; align-items: center; justify-content: center; flex-direction: column; color: #ffffff;">
+    <div style="font-size: 3rem; animation: spin 1s infinite linear;">⚙️</div>
+    <div style="font-size: 1.1rem; font-weight: 700; margin-top: 1rem;" id="loadingMessage">Procesando...</div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- =========================================================================
+       5. PIE DE PÁGINA INSTITUCIONAL (Footer SEDCALDAS)
+       ========================================================================= -->
+  <footer class="sed-footer">
+    <div class="footer-container">
+      <div>
+        <div class="footer-col-title">🏛️ Gobernación de Caldas</div>
+        <p style="margin-bottom: 0.5rem;">Secretaría de Educación Departamental</p>
+        <p style="color: #94a3b8; font-size: 0.78rem;">Carrera 21 entre Calles 22 y 23, Manizales - Caldas, Colombia</p>
+        <p style="color: #94a3b8; font-size: 0.78rem; margin-top: 0.35rem;">Edificio Licorera de Caldas</p>
+      </div>
+      <div>
+        <div class="footer-col-title">🔗 Enlaces Institucionales</div>
+        <ul class="footer-links-list">
+          <li><a href="https://educacion.caldas.gov.co/" target="_blank" rel="noopener">Portal Web SED Caldas</a></li>
+          <li><a href="http://sac2.gestionsecretariasdeeducacion.gov.co/app_Login/?sec=15" target="_blank"
+              rel="noopener">Atención al Ciudadano (SAC II)</a></li>
+          <li><a href="https://caldas.gov.co/" target="_blank" rel="noopener">Gobernación de Caldas</a></li>
+          <li><a href="https://www.mineducacion.gov.co/" target="_blank" rel="noopener">Ministerio de Educación
+              Nacional</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">📋 Normativa Aplicable</div>
+        <p style="margin-bottom: 0.4rem;"><strong>Circular Nº 122 del 24 de agosto de 2026</strong></p>
+        <p style="color: #94a3b8; font-size: 0.76rem;">Modificación del calendario escolar 2026 y directrices para los
+          planes de contingencia institucional ante la emergencia sísmica.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Secretaría de Educación de Caldas. Todos los derechos reservados.</div>
+      <div>Sistema de Gestión y Seguimiento de Planes de Contingencia Escolar – v1.0.0</div>
+    </div>
+  </footer>
+
+  <!-- Scripts de la Aplicación -->
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/documentos.js"></script>
+  <script src="js/formulario.js"></script>
+  <script src="js/consultas.js"></script>
+  <script src="js/evaluacion.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>

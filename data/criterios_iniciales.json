@@ -1,0 +1,74 @@
+[
+  {
+    "id_criterio": "CRIT-001",
+    "tipo_documento": "PlanContingencia",
+    "criterio": "Adopción formal y alcance del plan",
+    "descripcion": "El documento presenta el plan de contingencia formalmente adoptado por la institución para atender la contingencia derivada del evento sísmico.",
+    "obligatorio": "SI",
+    "activo": "SI"
+  },
+  {
+    "id_criterio": "CRIT-002",
+    "tipo_documento": "PlanContingencia",
+    "criterio": "Protocolos de emergencia y evacuación",
+    "descripcion": "Se detallan los protocolos de seguridad, rutas de evacuación y zonas seguras identificadas para la comunidad educativa.",
+    "obligatorio": "SI",
+    "activo": "SI"
+  },
+  {
+    "id_criterio": "CRIT-003",
+    "tipo_documento": "SedesAfectadas",
+    "criterio": "Identificación y diagnóstico de afectaciones",
+    "descripcion": "Se discriminan todas las sedes de la institución con su respectivo código DANE de sede, nivel de daño estructural o no estructural y condición de habitabilidad.",
+    "obligatorio": "SI",
+    "activo": "SI"
+  },
+  {
+    "id_criterio": "CRIT-004",
+    "tipo_documento": "SedesAfectadas",
+    "criterio": "Censo de población escolar impactada",
+    "descripcion": "Se especifica el número de estudiantes, docentes y personal administrativo afectado por cada sede.",
+    "obligatorio": "SI",
+    "activo": "SI"
+  },
+  {
+    "id_criterio": "CRIT-005",
+    "tipo_documento": "Estrategia",
+    "criterio": "Modalidad de prestación del servicio definida",
+    "descripcion": "Se establecen con claridad las modalidades pedagógicas a implementar (reubicación temporal, alternancia, guías impresas, virtualidad o encuentros pedagógicos periódicos).",
+    "obligatorio": "SI",
+    "activo": "SI"
+  },
+  {
+    "id_criterio": "CRIT-006",
+    "tipo_documento": "Estrategia",
+    "criterio": "Estrategias de permanencia escolar",
+    "descripcion": "Contempla acciones concretas para prevenir la deserción escolar y garantizar la continuidad formativa de todos los estudiantes.",
+    "obligatorio": "SI",
+    "activo": "SI"
+  },
+  {
+    "id_criterio": "CRIT-007",
+    "tipo_documento": "Cronograma",
+    "criterio": "Planificación temporal coherente",
+    "descripcion": "El cronograma incluye fechas de inicio, fases de implementación, responsables y metas de restablecimiento del servicio.",
+    "obligatorio": "SI",
+    "activo": "SI"
+  },
+  {
+    "id_criterio": "CRIT-008",
+    "tipo_documento": "EvidenciaActividades",
+    "criterio": "Soportes de la semana de desarrollo institucional",
+    "descripcion": "Se anexan actas de comités, listas de asistencia, registros fotográficos o evidencias de socialización con el consejo directivo y comunidad educativa.",
+    "obligatorio": "SI",
+    "activo": "SI"
+  },
+  {
+    "id_criterio": "CRIT-009",
+    "tipo_documento": "Requerimientos",
+    "criterio": "Solicitudes técnicas, administrativas o financieras",
+    "descripcion": "Se justifican de manera puntual las necesidades de asistencia técnica, adecuaciones de infraestructura provisional o suministros requeridos a la SED Caldas.",
+    "obligatorio": "NO",
+    "activo": "SI"
+  }
+]

@@ -1,0 +1,1290 @@
+/* ==========================================================================
+   SISTEMA DE GESTIÓN Y SEGUIMIENTO DE PLANES DE CONTINGENCIA - SED CALDAS
+   Diseño Institucional Oficial - Basado en https://educacion.caldas.gov.co/
+   ========================================================================== */
+
+/* Google Fonts: Montserrat, Barlow e Inter */
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Paleta Oficial SED Caldas */
+  --brand-primary: #007a33;         /* Verde Institucional Oficial Caldas */
+  --brand-primary-dark: #004d20;
+  --brand-primary-deep: #002d13;
+  --brand-primary-light: #e8f5ed;
+  --brand-primary-hover: #009639;
+
+  --brand-accent: #f39200;          /* Amarillo / Dorado Caldas */
+  --brand-accent-hover: #d97f00;
+  --brand-accent-light: #fff8eb;
+
+  --caldas-yellow: #fdb813;
+  --caldas-green: #007a33;
+  --caldas-red: #da291c;
+
+  /* Estados de Flujo */
+  --status-draft-bg: #f1f5f9;
+  --status-draft-text: #475569;
+  --status-draft-border: #cbd5e1;
+
+  --status-sent-bg: #eff6ff;
+  --status-sent-text: #1d4ed8;
+  --status-sent-border: #bfdbfe;
+
+  --status-review-bg: #fefce8;
+  --status-review-text: #a16207;
+  --status-review-border: #fef08a;
+
+  --status-correction-bg: #fff1f2;
+  --status-correction-text: #be123c;
+  --status-correction-border: #fecdd3;
+
+  --status-approved-bg: #e8f5ed;
+  --status-approved-text: #007a33;
+  --status-approved-border: #a7d9b9;
+
+  /* Fondos y Textos */
+  --bg-body: #f4f7f5;
+  --bg-surface: #ffffff;
+  --bg-subtle: #edf3ee;
+  --bg-topbar: #002d13;
+
+  --text-main: #1e293b;
+  --text-heading: #003816;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+  --text-white: #ffffff;
+
+  --border-light: #e2ece5;
+  --border-medium: #cbdcd1;
+  --border-focus: #007a33;
+
+  /* Sombras y Radios */
+  --shadow-sm: 0 1px 3px rgba(0, 45, 19, 0.06);
+  --shadow-md: 0 4px 8px rgba(0, 45, 19, 0.08), 0 2px 4px rgba(0, 45, 19, 0.04);
+  --shadow-lg: 0 10px 20px rgba(0, 45, 19, 0.1), 0 4px 6px rgba(0, 45, 19, 0.05);
+  --shadow-xl: 0 20px 30px rgba(0, 45, 19, 0.12);
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-pill: 9999px;
+
+  /* Tipografía */
+  --font-heading: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Barlow', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-system: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+}
+
+/* ==========================================================================
+   Reset y Base
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--text-heading);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+/* ==========================================================================
+   1. BARRA SUPERIOR INSTITUCIONAL (Top Toolbar SEDCALDAS)
+   ========================================================================== */
+.top-toolbar {
+  background-color: var(--bg-topbar);
+  color: #e2ece5;
+  font-size: 0.8rem;
+  font-family: var(--font-system);
+  border-bottom: 2px solid var(--brand-accent);
+}
+
+.toolbar-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0.45rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.gov-flag-badge {
+  display: inline-flex;
+  height: 16px;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.flag-stripe {
+  width: 7px;
+  height: 100%;
+}
+.flag-stripe.yellow { background-color: var(--caldas-yellow); }
+.flag-stripe.green { background-color: var(--caldas-green); }
+.flag-stripe.red { background-color: var(--caldas-red); }
+
+.toolbar-entity {
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: #ffffff;
+}
+
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.toolbar-link {
+  color: #cbdcd1;
+  text-decoration: none;
+  font-size: 0.78rem;
+  transition: color var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.toolbar-link:hover {
+  color: var(--caldas-yellow);
+}
+
+.toolbar-divider {
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 0.75rem;
+}
+
+.user-role-control {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-pill);
+  padding: 0.2rem 0.65rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.76rem;
+}
+
+.role-select {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.76rem;
+  font-family: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+.role-select option {
+  background: var(--bg-topbar);
+  color: #ffffff;
+}
+
+.env-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.18rem 0.55rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: var(--radius-pill);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.env-badge.demo {
+  background: #fef08a;
+  color: #854d0e;
+  border: 1px solid #facc15;
+}
+
+.env-badge.prod {
+  background: #bbf7d0;
+  color: #166534;
+  border: 1px solid #86efac;
+}
+
+/* ==========================================================================
+   2. CABECERA PRINCIPAL (Main Header con Logo SEDCALDAS)
+   ========================================================================== */
+.main-header {
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.header-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0.85rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.header-brand-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.brand-logo-img {
+  height: 56px;
+  max-height: 60px;
+  width: auto;
+  max-width: 450px;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.05));
+}
+
+.header-meta-box {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.circular-badge-box {
+  background: var(--brand-primary-light);
+  border: 1px solid #c2dec9;
+  border-left: 4px solid var(--brand-primary);
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+}
+
+.circular-badge-title {
+  font-weight: 800;
+  color: var(--brand-primary-dark);
+  font-family: var(--font-heading);
+}
+
+.circular-badge-sub {
+  color: #33593d;
+  font-size: 0.74rem;
+}
+
+/* ==========================================================================
+   3. BARRA DE NAVEGACIÓN INSTITUCIONAL VERDE (SED Navbar)
+   ========================================================================== */
+.sed-navbar {
+  background: linear-gradient(180deg, #007a33 0%, #005a26 100%);
+  border-bottom: 3px solid var(--brand-accent);
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  overflow-x: auto;
+  scrollbar-width: none;
+  gap: 0.25rem;
+}
+
+.nav-menu::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-item-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.15rem;
+  color: #e2ece5;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.nav-item-btn:hover {
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.nav-item-btn.active {
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.25);
+  border-bottom-color: var(--brand-accent);
+  font-weight: 700;
+}
+
+.nav-badge-count {
+  background: var(--brand-accent);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.12rem 0.45rem;
+  border-radius: var(--radius-pill);
+}
+
+/* ==========================================================================
+   4. CINTA DE AVISOS Y BANNER INSTITUCIONAL
+   ========================================================================== */
+.ticker-section {
+  background: linear-gradient(90deg, #004d20 0%, #007a33 100%);
+  color: #ffffff;
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1.4rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  border-left: 5px solid var(--caldas-yellow);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.ticker-content {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.ticker-icon {
+  font-size: 1.75rem;
+  background: rgba(255, 255, 255, 0.15);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+}
+
+.ticker-title {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.98rem;
+  letter-spacing: 0.3px;
+}
+
+.ticker-subtitle {
+  font-size: 0.86rem;
+  opacity: 0.92;
+  color: #e8f5ed;
+}
+
+/* ==========================================================================
+   Contenedor Principal y Pestañas
+   ========================================================================== */
+.main-wrapper {
+  max-width: 1400px;
+  width: 100%;
+  margin: 1.25rem auto;
+  padding: 0 1.5rem;
+  flex: 1;
+}
+
+.tab-panel {
+  display: none;
+  animation: fadeIn 0.25s ease-in-out;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   Componente Card Institucional
+   ========================================================================== */
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  transition: box-shadow var(--transition-normal);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.card-header {
+  padding: 1.15rem 1.5rem;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border-left: 4px solid var(--brand-primary);
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--brand-primary-dark);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card-subtitle {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+  font-family: var(--font-body);
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-footer {
+  padding: 0.9rem 1.5rem;
+  background: var(--bg-subtle);
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* ==========================================================================
+   Stepper Asistente (Wizard)
+   ========================================================================== */
+.stepper-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.75rem;
+  position: relative;
+}
+
+.stepper-container::before {
+  content: '';
+  position: absolute;
+  top: 22px;
+  left: 40px;
+  right: 40px;
+  height: 3px;
+  background: var(--border-medium);
+  z-index: 1;
+}
+
+.step-item {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  text-align: center;
+  cursor: pointer;
+}
+
+.step-bubble {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg-surface);
+  border: 3px solid var(--border-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  transition: var(--transition-normal);
+  box-shadow: var(--shadow-sm);
+}
+
+.step-item.active .step-bubble {
+  border-color: var(--brand-primary);
+  background: var(--brand-primary);
+  color: #ffffff;
+  box-shadow: 0 0 0 4px var(--brand-primary-light);
+}
+
+.step-item.completed .step-bubble {
+  border-color: var(--brand-primary);
+  background: var(--brand-primary);
+  color: #ffffff;
+}
+
+.step-label {
+  margin-top: 0.45rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  font-family: var(--font-heading);
+}
+
+.step-item.active .step-label {
+  color: var(--brand-primary-dark);
+  font-weight: 800;
+}
+
+.step-item.completed .step-label {
+  color: var(--brand-primary);
+}
+
+.form-step-section {
+  display: none;
+}
+
+.form-step-section.active {
+  display: block;
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* ==========================================================================
+   Form Grid & Controls
+   ========================================================================== */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.15rem;
+}
+
+.col-12 { grid-column: span 12; }
+.col-8 { grid-column: span 8; }
+.col-6 { grid-column: span 6; }
+.col-5 { grid-column: span 5; }
+.col-4 { grid-column: span 4; }
+.col-3 { grid-column: span 3; }
+.col-2 { grid-column: span 2; }
+.col-1 { grid-column: span 1; }
+
+@media (max-width: 900px) {
+  .col-8, .col-6, .col-5, .col-4, .col-3, .col-2, .col-1 {
+    grid-column: span 12;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.form-label {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  font-family: var(--font-heading);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-label .required-mark {
+  color: #dc2626;
+  font-weight: 800;
+  margin-left: 0.2rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.92rem;
+  font-family: var(--font-body);
+  color: var(--text-main);
+  background-color: #ffffff;
+  border: 1.5px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  outline: none;
+}
+
+.form-control:focus {
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 3px var(--brand-primary-light);
+}
+
+.form-control[readonly], .form-control:disabled {
+  background-color: var(--bg-subtle);
+  color: var(--text-muted);
+  cursor: not-allowed;
+  border-style: dashed;
+}
+
+.form-hint {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Document Upload Cards (Paso 4)
+   ========================================================================== */
+.doc-upload-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.15rem;
+}
+
+.doc-card {
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: all var(--transition-fast);
+}
+
+.doc-card.mandatory {
+  border-left: 4px solid var(--brand-primary);
+}
+
+.doc-card.optional {
+  border-left: 4px solid var(--brand-accent);
+}
+
+.doc-card.uploaded {
+  border-color: var(--brand-primary);
+  background: #fafdfb;
+}
+
+.doc-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.doc-card-title {
+  font-weight: 700;
+  font-size: 0.94rem;
+  font-family: var(--font-heading);
+  color: var(--text-heading);
+}
+
+.doc-badge {
+  font-size: 0.7rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.doc-badge.req {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.doc-badge.opt {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.doc-card-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  flex: 1;
+}
+
+.doc-dropzone {
+  border: 2px dashed var(--border-medium);
+  border-radius: var(--radius-sm);
+  padding: 1.1rem;
+  text-align: center;
+  cursor: pointer;
+  background: var(--bg-subtle);
+  transition: all var(--transition-fast);
+}
+
+.doc-dropzone:hover, .doc-dropzone.dragover {
+  border-color: var(--brand-primary);
+  background: var(--brand-primary-light);
+}
+
+.dropzone-icon {
+  font-size: 1.6rem;
+  color: var(--brand-primary);
+  margin-bottom: 0.2rem;
+}
+
+.dropzone-text {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--brand-primary);
+  font-family: var(--font-heading);
+}
+
+.dropzone-subtext {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.file-info-chip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--brand-primary-light);
+  border: 1px solid #a7d9b9;
+  padding: 0.55rem 0.8rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+}
+
+.file-info-name {
+  font-weight: 700;
+  color: var(--brand-primary-dark);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.file-remove-btn {
+  background: none;
+  border: none;
+  color: #dc2626;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.15rem 0.35rem;
+  border-radius: 3px;
+}
+
+.file-remove-btn:hover {
+  background: #fee2e2;
+}
+
+/* ==========================================================================
+   Botones Institucionales
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.6rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-family: var(--font-heading);
+  border-radius: var(--radius-sm);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--brand-primary);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: var(--brand-primary-dark);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-accent {
+  background-color: var(--brand-accent);
+  color: #ffffff;
+}
+
+.btn-accent:hover {
+  background-color: var(--brand-accent-hover);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+  background-color: #ffffff;
+  color: var(--text-main);
+  border-color: var(--border-medium);
+}
+
+.btn-secondary:hover {
+  background-color: var(--bg-subtle);
+  border-color: var(--text-muted);
+}
+
+.btn-outline-danger {
+  background-color: transparent;
+  color: #dc2626;
+  border-color: #fca5a5;
+}
+
+.btn-outline-danger:hover {
+  background-color: #fef2f2;
+}
+
+.btn-sm {
+  padding: 0.35rem 0.7rem;
+  font-size: 0.8rem;
+}
+
+.btn-lg {
+  padding: 0.8rem 1.6rem;
+  font-size: 1rem;
+}
+
+/* ==========================================================================
+   Badges y Tablas
+   ========================================================================== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.74rem;
+  font-weight: 800;
+  font-family: var(--font-heading);
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.badge-draft {
+  background: var(--status-draft-bg);
+  color: var(--status-draft-text);
+  border: 1px solid var(--status-draft-border);
+}
+
+.badge-sent {
+  background: var(--status-sent-bg);
+  color: var(--status-sent-text);
+  border: 1px solid var(--status-sent-border);
+}
+
+.badge-review {
+  background: var(--status-review-bg);
+  color: var(--status-review-text);
+  border: 1px solid var(--status-review-border);
+}
+
+.badge-correction {
+  background: var(--status-correction-bg);
+  color: var(--status-correction-text);
+  border: 1px solid var(--status-correction-border);
+}
+
+.badge-approved {
+  background: var(--status-approved-bg);
+  color: var(--status-approved-text);
+  border: 1px solid var(--status-approved-border);
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+}
+
+.table-sed {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.88rem;
+  background: #ffffff;
+}
+
+.table-sed thead {
+  background: var(--bg-subtle);
+  border-bottom: 2px solid var(--border-medium);
+}
+
+.table-sed th {
+  padding: 0.8rem 1rem;
+  font-weight: 800;
+  font-family: var(--font-heading);
+  color: var(--text-heading);
+  text-transform: uppercase;
+  font-size: 0.74rem;
+  letter-spacing: 0.5px;
+}
+
+.table-sed td {
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-main);
+  vertical-align: middle;
+}
+
+.table-sed tbody tr:hover {
+  background-color: #f8fbf9;
+}
+
+/* ==========================================================================
+   KPIs y Gráficos (Dashboard)
+   ========================================================================== */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.15rem;
+  margin-bottom: 1.5rem;
+}
+
+.kpi-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  border-left: 4px solid var(--brand-primary);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.kpi-title {
+  font-size: 0.8rem;
+  font-weight: 800;
+  font-family: var(--font-heading);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.kpi-value {
+  font-size: 1.9rem;
+  font-weight: 800;
+  font-family: var(--font-heading);
+  color: var(--text-heading);
+  margin-top: 0.2rem;
+  line-height: 1;
+}
+
+.kpi-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+/* ==========================================================================
+   Línea de Tiempo (Timeline)
+   ========================================================================== */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+  margin: 1.5rem 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 9px;
+  width: 2px;
+  background: var(--border-medium);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 1.25rem;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -2rem;
+  top: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid var(--brand-primary);
+  box-shadow: 0 0 0 3px rgba(0, 122, 51, 0.15);
+}
+
+.timeline-item.approved .timeline-dot {
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 3px rgba(0, 122, 51, 0.15);
+}
+
+.timeline-item.correction .timeline-dot {
+  border-color: #da291c;
+  box-shadow: 0 0 0 3px rgba(218, 41, 28, 0.15);
+}
+
+.timeline-content {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1.15rem;
+}
+
+.timeline-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.35rem;
+}
+
+.timeline-title {
+  font-weight: 800;
+  font-size: 0.92rem;
+  font-family: var(--font-heading);
+  color: var(--text-heading);
+}
+
+.timeline-date {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Modales y Notificaciones
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 45, 19, 0.65);
+  backdrop-filter: blur(3px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 1rem;
+}
+
+.modal-overlay.active {
+  display: flex;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-box {
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  max-width: 720px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+}
+
+.modal-box.modal-lg {
+  max-width: 900px;
+}
+
+.modal-header {
+  padding: 1.15rem 1.5rem;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border-left: 4px solid var(--brand-primary);
+}
+
+.modal-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  font-family: var(--font-heading);
+  color: var(--brand-primary-dark);
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+.modal-close-btn:hover {
+  background: var(--bg-subtle);
+  color: var(--text-main);
+}
+
+.modal-body {
+  padding: 1.5rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.modal-footer {
+  padding: 0.9rem 1.5rem;
+  background: var(--bg-subtle);
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.toast-container {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: auto;
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.15rem;
+  box-shadow: var(--shadow-lg);
+  border-left: 5px solid var(--brand-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 300px;
+  max-width: 420px;
+  font-size: 0.86rem;
+  animation: slideIn 0.3s ease-out;
+}
+
+.toast.success { border-left-color: var(--brand-primary); }
+.toast.error { border-left-color: #da291c; }
+.toast.warning { border-left-color: var(--brand-accent); }
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* ==========================================================================
+   5. PIE DE PÁGINA INSTITUCIONAL (Footer SEDCALDAS)
+   ========================================================================== */
+.sed-footer {
+  background-color: var(--bg-topbar);
+  color: #cbdcd1;
+  padding: 2rem 1.5rem 1.5rem;
+  margin-top: auto;
+  border-top: 4px solid var(--brand-accent);
+  font-size: 0.82rem;
+  font-family: var(--font-system);
+}
+
+.footer-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.footer-col-title {
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.footer-links-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.footer-links-list a {
+  color: #cbdcd1;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footer-links-list a:hover {
+  color: var(--caldas-yellow);
+}
+
+.footer-bottom {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.76rem;
+  color: #94a3b8;
+}
+
+@media print {
+  .top-toolbar, .sed-navbar, .btn, .stepper-container, .sed-footer, .ticker-section {
+    display: none !important;
+  }
+  body {
+    background: #ffffff;
+    color: #000000;
+  }
+}

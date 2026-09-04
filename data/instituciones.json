@@ -1,0 +1,817 @@
+[
+  {
+    "municipio": "AGUADAS",
+    "codigo_establecimiento": "217013000564",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA EL EDEN"
+  },
+  {
+    "municipio": "AGUADAS",
+    "codigo_establecimiento": "217013000602",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA ENCIMADAS"
+  },
+  {
+    "municipio": "AGUADAS",
+    "codigo_establecimiento": "117013001167",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA ESCUELA  NORMAL SUPERIOR CLAUDINA MUNERA"
+  },
+  {
+    "municipio": "AGUADAS",
+    "codigo_establecimiento": "217013000742",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA LA MERMITA"
+  },
+  {
+    "municipio": "AGUADAS",
+    "codigo_establecimiento": "117013000292",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA LICEO CLAUDINA MUNERA"
+  },
+  {
+    "municipio": "AGUADAS",
+    "codigo_establecimiento": "117013000306",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA MARINO GOMEZ ESTRADA"
+  },
+  {
+    "municipio": "AGUADAS",
+    "codigo_establecimiento": "217013000131",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA RIOARRIBA"
+  },
+  {
+    "municipio": "AGUADAS",
+    "codigo_establecimiento": "117013001086",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA ROBERTO PELAEZ"
+  },
+  {
+    "municipio": "AGUADAS",
+    "codigo_establecimiento": "217013000777",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA SAN ANTONIO DE ARMA"
+  },
+  {
+    "municipio": "AGUADAS",
+    "codigo_establecimiento": "217013001111",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA VIBORAL"
+  },
+  {
+    "municipio": "ANSERMA",
+    "codigo_establecimiento": "217042000883",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA ALTO NUBIA"
+  },
+  {
+    "municipio": "ANSERMA",
+    "codigo_establecimiento": "117042000552",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA AURELIANO FLOREZ CARDONA"
+  },
+  {
+    "municipio": "ANSERMA",
+    "codigo_establecimiento": "117042000561",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA DE OCCIDENTE"
+  },
+  {
+    "municipio": "ANSERMA",
+    "codigo_establecimiento": "217042000913",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA EL HORRO"
+  },
+  {
+    "municipio": "ANSERMA",
+    "codigo_establecimiento": "117042000650",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA ESCUELA NORMAL SUPERIOR REBECA SIERRA CARDONA"
+  },
+  {
+    "municipio": "ANSERMA",
+    "codigo_establecimiento": "217042000166",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA GOMEZ FERNANDEZ"
+  },
+  {
+    "municipio": "ANSERMA",
+    "codigo_establecimiento": "217042000417",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA JERONIMO DE TEJELO"
+  },
+  {
+    "municipio": "ANSERMA",
+    "codigo_establecimiento": "217042000263",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA JUAN XXIII"
+  },
+  {
+    "municipio": "ANSERMA",
+    "codigo_establecimiento": "217042000107",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA OCUZCA"
+  },
+  {
+    "municipio": "ANSERMA",
+    "codigo_establecimiento": "217042000344",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA SAN PEDRO"
+  },
+  {
+    "municipio": "ARANZAZU",
+    "codigo_establecimiento": "217050000400",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA ALEGRIAS"
+  },
+  {
+    "municipio": "ARANZAZU",
+    "codigo_establecimiento": "117050000316",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA ESCUELA NORMAL SUPERIOR SAGRADO CORAZON"
+  },
+  {
+    "municipio": "ARANZAZU",
+    "codigo_establecimiento": "217050000175",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA JUAN CRISOSTOMO OSORIO"
+  },
+  {
+    "municipio": "ARANZAZU",
+    "codigo_establecimiento": "117050000324",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA PIO XI"
+  },
+  {
+    "municipio": "BELALCÁZAR",
+    "codigo_establecimiento": "117088000255",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA CRISTO REY"
+  },
+  {
+    "municipio": "BELALCÁZAR",
+    "codigo_establecimiento": "217088000217",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA EL AGUILA"
+  },
+  {
+    "municipio": "BELALCÁZAR",
+    "codigo_establecimiento": "217088000098",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA EL MADROÑO"
+  },
+  {
+    "municipio": "BELALCÁZAR",
+    "codigo_establecimiento": "217088000535",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA SAN ISIDRO"
+  },
+  {
+    "municipio": "CHINCHINÁ",
+    "codigo_establecimiento": "117174000314",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA BARTOLOME MITRE"
+  },
+  {
+    "municipio": "CHINCHINÁ",
+    "codigo_establecimiento": "217174000131",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA EDUARDO GOMEZ ARRUBLA"
+  },
+  {
+    "municipio": "CHINCHINÁ",
+    "codigo_establecimiento": "217174000432",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA EL TREBOL"
+  },
+  {
+    "municipio": "CHINCHINÁ",
+    "codigo_establecimiento": "217174000262",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA NARANJAL"
+  },
+  {
+    "municipio": "CHINCHINÁ",
+    "codigo_establecimiento": "117174000292",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA SAN FRANCISCO DE PAULA"
+  },
+  {
+    "municipio": "CHINCHINÁ",
+    "codigo_establecimiento": "117174000349",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA SANTA TERESITA"
+  },
+  {
+    "municipio": "CHINCHINÁ",
+    "codigo_establecimiento": "117174000616",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA SANTO DOMINGO SAVIO"
+  },
+  {
+    "municipio": "FILADELFIA",
+    "codigo_establecimiento": "217272000131",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA ANTONIO NARIÑO"
+  },
+  {
+    "municipio": "FILADELFIA",
+    "codigo_establecimiento": "217272000106",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA CRISANTO LUQUE"
+  },
+  {
+    "municipio": "FILADELFIA",
+    "codigo_establecimiento": "117272000578",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA FILADELFIA"
+  },
+  {
+    "municipio": "LA DORADA",
+    "codigo_establecimiento": "217380000376",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA BUENAVISTA"
+  },
+  {
+    "municipio": "LA DORADA",
+    "codigo_establecimiento": "117380000053",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA DORADA"
+  },
+  {
+    "municipio": "LA DORADA",
+    "codigo_establecimiento": "217380000040",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA EL JAPON"
+  },
+  {
+    "municipio": "LA DORADA",
+    "codigo_establecimiento": "117380000185",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA ESCUELA NORMAL SUPERIOR  MARCO FIDEL SUAREZ"
+  },
+  {
+    "municipio": "LA DORADA",
+    "codigo_establecimiento": "217380000856",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA GUARINOCITO"
+  },
+  {
+    "municipio": "LA DORADA",
+    "codigo_establecimiento": "117380000347",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA NUESTRA SEÑORA DEL CARMEN"
+  },
+  {
+    "municipio": "LA DORADA",
+    "codigo_establecimiento": "217380000244",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA PURNIO"
+  },
+  {
+    "municipio": "LA DORADA",
+    "codigo_establecimiento": "117380000843",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA TÉCNICA ALFONSO LOPEZ"
+  },
+  {
+    "municipio": "LA DORADA",
+    "codigo_establecimiento": "117380000789",
+    "nombre_establecimiento": "INSTITUCIÓN EDUCATIVA RENÁN BARCO - JUAN PABLO II- SEDE PRINCIPAL"
+  },
+  {
+    "municipio": "LA MERCED",
+    "codigo_establecimiento": "217388000405",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA LA FELISA"
+  },
+  {
+    "municipio": "LA MERCED",
+    "codigo_establecimiento": "217388000383",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA LLANADAS"
+  },
+  {
+    "municipio": "LA MERCED",
+    "codigo_establecimiento": "117388000028",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA MONSEÑOR ANTONIO JOSE GIRALDO GOMEZ"
+  },
+  {
+    "municipio": "MANZANARES",
+    "codigo_establecimiento": "217433000314",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA AGUABONITA"
+  },
+  {
+    "municipio": "MANZANARES",
+    "codigo_establecimiento": "217433000802",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA GREGORIO GUTIERREZ GONZALEZ"
+  },
+  {
+    "municipio": "MANZANARES",
+    "codigo_establecimiento": "217433000578",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA JOSE ANTONIO GALAN"
+  },
+  {
+    "municipio": "MANZANARES",
+    "codigo_establecimiento": "217433000535",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA LLANADAS"
+  },
+  {
+    "municipio": "MANZANARES",
+    "codigo_establecimiento": "117433000379",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA MANZANARES"
+  },
+  {
+    "municipio": "MANZANARES",
+    "codigo_establecimiento": "117433000387",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA NUESTRA SEÑORA DEL ROSARIO"
+  },
+  {
+    "municipio": "MANZANARES",
+    "codigo_establecimiento": "217433000098",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA ROMERAL"
+  },
+  {
+    "municipio": "MARMATO",
+    "codigo_establecimiento": "217442000041",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA CABRAS"
+  },
+  {
+    "municipio": "MARMATO",
+    "codigo_establecimiento": "217442000033",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA EL LLANO"
+  },
+  {
+    "municipio": "MARMATO",
+    "codigo_establecimiento": "217442000246",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA GENERAL RAMON MARIN"
+  },
+  {
+    "municipio": "MARMATO",
+    "codigo_establecimiento": "117442000322",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA MARMATO"
+  },
+  {
+    "municipio": "MARMATO",
+    "codigo_establecimiento": "217442000122",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA RAFAEL POMBO"
+  },
+  {
+    "municipio": "MARQUETALIA",
+    "codigo_establecimiento": "217444000821",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA ANTONIO MARIA HINCAPIE"
+  },
+  {
+    "municipio": "MARQUETALIA",
+    "codigo_establecimiento": "217444000138",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA EL PLACER"
+  },
+  {
+    "municipio": "MARQUETALIA",
+    "codigo_establecimiento": "117444000044",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA ESCUELA NORMAL SUPERIOR NUESTRA SENORA DE LA CANDELARIA"
+  },
+  {
+    "municipio": "MARQUETALIA",
+    "codigo_establecimiento": "117444000818",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA JUAN XXIII"
+  },
+  {
+    "municipio": "MARQUETALIA",
+    "codigo_establecimiento": "217444000171",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA LA FLORIDA."
+  },
+  {
+    "municipio": "MARQUETALIA",
+    "codigo_establecimiento": "217444000201",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA LA QUIEBRA"
+  },
+  {
+    "municipio": "MARQUETALIA",
+    "codigo_establecimiento": "217444000278",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA PATIO BONITO"
+  },
+  {
+    "municipio": "MARULANDA",
+    "codigo_establecimiento": "117446000157",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA EFREN CARDONA CHICA"
+  },
+  {
+    "municipio": "MARULANDA",
+    "codigo_establecimiento": "217446000038",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA MONTEBONITO"
+  },
+  {
+    "municipio": "NEIRA",
+    "codigo_establecimiento": "217486000731",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA AGUACATAL"
+  },
+  {
+    "municipio": "NEIRA",
+    "codigo_establecimiento": "217486000791",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA EL ROBLE"
+  },
+  {
+    "municipio": "NEIRA",
+    "codigo_establecimiento": "217486000723",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA LLANOGRANDE"
+  },
+  {
+    "municipio": "NEIRA",
+    "codigo_establecimiento": "117486000877",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA NEIRA"
+  },
+  {
+    "municipio": "NEIRA",
+    "codigo_establecimiento": "217486000391",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA PIO XII"
+  },
+  {
+    "municipio": "NEIRA",
+    "codigo_establecimiento": "217486000651",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA PUEBLO RICO"
+  },
+  {
+    "municipio": "NEIRA",
+    "codigo_establecimiento": "217486000618",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA SAN LUIS"
+  },
+  {
+    "municipio": "NEIRA",
+    "codigo_establecimiento": "117486000168",
+    "nombre_establecimiento": "INSTITUCION EDUCATVA NUESTRA SENORA DEL ROSARIO"
+  },
+  {
+    "municipio": "NORCASIA",
+    "codigo_establecimiento": "217662002681",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA LA ESTRELLA"
+  },
+  {
+    "municipio": "NORCASIA",
+    "codigo_establecimiento": "117495005407",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA SAN GERARDO MARIA MAYELA"
+  },
+  {
+    "municipio": "PALESTINA",
+    "codigo_establecimiento": "217524000236",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA CARTAGENA"
+  },
+  {
+    "municipio": "PALESTINA",
+    "codigo_establecimiento": "217524000392",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA JOSE MARIA CARBONELL"
+  },
+  {
+    "municipio": "PALESTINA",
+    "codigo_establecimiento": "117524000118",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA LA SAGRADA FAMILIA"
+  },
+  {
+    "municipio": "PALESTINA",
+    "codigo_establecimiento": "217524000015",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA MONSEÑOR ALFONSO DE LOS RIOS"
+  },
+  {
+    "municipio": "PALESTINA",
+    "codigo_establecimiento": "217524000040",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA SANTAGUEDA"
+  },
+  {
+    "municipio": "PENSILVANIA",
+    "codigo_establecimiento": "217541001360",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA CAMILO OLIMPO CARDONA"
+  },
+  {
+    "municipio": "PENSILVANIA",
+    "codigo_establecimiento": "217541001793",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA DANIEL MARIA LOPEZ RODRIGUEZ"
+  },
+  {
+    "municipio": "PENSILVANIA",
+    "codigo_establecimiento": "117541000652",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA ESCUELA NORMAL SUPERIOR DE LA PRESENTACION"
+  },
+  {
+    "municipio": "PENSILVANIA",
+    "codigo_establecimiento": "217541000851",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA FRANCISCO JULIAN OLAYA"
+  },
+  {
+    "municipio": "PENSILVANIA",
+    "codigo_establecimiento": "217541000312",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA GUACAS"
+  },
+  {
+    "municipio": "PENSILVANIA",
+    "codigo_establecimiento": "217541000673",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA JOHN F. KENNEDY"
+  },
+  {
+    "municipio": "PENSILVANIA",
+    "codigo_establecimiento": "217541001301",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA LA RIOJA"
+  },
+  {
+    "municipio": "PENSILVANIA",
+    "codigo_establecimiento": "217541000649",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA PABLO VI"
+  },
+  {
+    "municipio": "PENSILVANIA",
+    "codigo_establecimiento": "117541001748",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA PENSILVANIA"
+  },
+  {
+    "municipio": "PENSILVANIA",
+    "codigo_establecimiento": "217541000355",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA SANTA RITA"
+  },
+  {
+    "municipio": "PÁCORA",
+    "codigo_establecimiento": "117513000825",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA ELIAS MEJIA ANGEL"
+  },
+  {
+    "municipio": "PÁCORA",
+    "codigo_establecimiento": "117513000469",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA ESCUELA NORMAL SUPERIOR SAN JOSE"
+  },
+  {
+    "municipio": "PÁCORA",
+    "codigo_establecimiento": "217513000676",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA FRANCISCO JOSE DE CALDAS"
+  },
+  {
+    "municipio": "PÁCORA",
+    "codigo_establecimiento": "217513000234",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA LA MILAGROSA"
+  },
+  {
+    "municipio": "PÁCORA",
+    "codigo_establecimiento": "217513000722",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA LAS COLES"
+  },
+  {
+    "municipio": "PÁCORA",
+    "codigo_establecimiento": "117513000558",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA MARCO FIDEL SUAREZ"
+  },
+  {
+    "municipio": "PÁCORA",
+    "codigo_establecimiento": "217513000561",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA MARISCAL ROBLEDO"
+  },
+  {
+    "municipio": "RIOSUCIO",
+    "codigo_establecimiento": "217614000723",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA BONAFONT"
+  },
+  {
+    "municipio": "RIOSUCIO",
+    "codigo_establecimiento": "117614000753",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA ESCUELA NORMAL SUPERIOR SAGRADO CORAZON"
+  },
+  {
+    "municipio": "RIOSUCIO",
+    "codigo_establecimiento": "217614000880",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA FLORENCIA"
+  },
+  {
+    "municipio": "RIOSUCIO",
+    "codigo_establecimiento": "217614000286",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA JOHN F. KENNEDY"
+  },
+  {
+    "municipio": "RIOSUCIO",
+    "codigo_establecimiento": "217614000928",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA LA IBERIA"
+  },
+  {
+    "municipio": "RIOSUCIO",
+    "codigo_establecimiento": "217614000332",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA LOS CHANCOS"
+  },
+  {
+    "municipio": "RIOSUCIO",
+    "codigo_establecimiento": "117614000711",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA LOS FUNDADORES"
+  },
+  {
+    "municipio": "RIOSUCIO",
+    "codigo_establecimiento": "217614000278",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA MARCO FIDEL SUAREZ"
+  },
+  {
+    "municipio": "RIOSUCIO",
+    "codigo_establecimiento": "217614001126",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA MARIA FABIOLA LARGO CANO"
+  },
+  {
+    "municipio": "RIOSUCIO",
+    "codigo_establecimiento": "217614000588",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA NUESTRA SEÑORA DE FATIMA"
+  },
+  {
+    "municipio": "RIOSUCIO",
+    "codigo_establecimiento": "217614000138",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA QUIEBRALOMO"
+  },
+  {
+    "municipio": "RIOSUCIO",
+    "codigo_establecimiento": "117614000745",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA RIOSUCIO"
+  },
+  {
+    "municipio": "RIOSUCIO",
+    "codigo_establecimiento": "217614000456",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA SAN JERONIMO"
+  },
+  {
+    "municipio": "RIOSUCIO",
+    "codigo_establecimiento": "217614000855",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA SAN JOSE"
+  },
+  {
+    "municipio": "RIOSUCIO",
+    "codigo_establecimiento": "217614000596",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA SAN LORENZO"
+  },
+  {
+    "municipio": "RIOSUCIO",
+    "codigo_establecimiento": "217614000201",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA SIPIRRA"
+  },
+  {
+    "municipio": "RISARALDA",
+    "codigo_establecimiento": "217616000666",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA FRANCISCO JOSE DE CALDAS"
+  },
+  {
+    "municipio": "RISARALDA",
+    "codigo_establecimiento": "217616000046",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA GABRIEL GARCIA MARQUEZ"
+  },
+  {
+    "municipio": "RISARALDA",
+    "codigo_establecimiento": "117616000696",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA MARIA INMACULADA"
+  },
+  {
+    "municipio": "RISARALDA",
+    "codigo_establecimiento": "217616000259",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA QUIEBRA DE SANTA BARBARA"
+  },
+  {
+    "municipio": "SALAMINA",
+    "codigo_establecimiento": "117653000647",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA DE LA PRESENTACION"
+  },
+  {
+    "municipio": "SALAMINA",
+    "codigo_establecimiento": "217653000625",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA EL PERRO"
+  },
+  {
+    "municipio": "SALAMINA",
+    "codigo_establecimiento": "117653000124",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA ESCUELA NORMAL SUPERIOR MARIA ESCOLASTICA"
+  },
+  {
+    "municipio": "SALAMINA",
+    "codigo_establecimiento": "217653001117",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA LUIS FELIPE GUTIERREZ LOAIZA"
+  },
+  {
+    "municipio": "SALAMINA",
+    "codigo_establecimiento": "117653000663",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA PIO XII"
+  },
+  {
+    "municipio": "SALAMINA",
+    "codigo_establecimiento": "217653000684",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA SAN FELIX"
+  },
+  {
+    "municipio": "SALAMINA",
+    "codigo_establecimiento": "117653000671",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA SARA OSPINA GRISALES"
+  },
+  {
+    "municipio": "SAMANÁ",
+    "codigo_establecimiento": "217662001952",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA BERLIN"
+  },
+  {
+    "municipio": "SAMANÁ",
+    "codigo_establecimiento": "217662000689",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA DULCE NOMBRE"
+  },
+  {
+    "municipio": "SAMANÁ",
+    "codigo_establecimiento": "217662002355",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA EL BOSQUE"
+  },
+  {
+    "municipio": "SAMANÁ",
+    "codigo_establecimiento": "217662000387",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA EL SILENCIO"
+  },
+  {
+    "municipio": "SAMANÁ",
+    "codigo_establecimiento": "217662000093",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA ENCIMADAS"
+  },
+  {
+    "municipio": "SAMANÁ",
+    "codigo_establecimiento": "217662000964",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA FELIX NARANJO"
+  },
+  {
+    "municipio": "SAMANÁ",
+    "codigo_establecimiento": "217662002801",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA PIO XII"
+  },
+  {
+    "municipio": "SAMANÁ",
+    "codigo_establecimiento": "217662000778",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA RANCHO LARGO"
+  },
+  {
+    "municipio": "SAMANÁ",
+    "codigo_establecimiento": "117662002792",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA SAN AGUSTIN"
+  },
+  {
+    "municipio": "SAMANÁ",
+    "codigo_establecimiento": "217662000743",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA SANTA TERESITA"
+  },
+  {
+    "municipio": "SAN JOSÉ",
+    "codigo_establecimiento": "217616000399",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA LA LIBERTAD"
+  },
+  {
+    "municipio": "SAN JOSÉ",
+    "codigo_establecimiento": "217616000372",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA SANTA TERESITA"
+  },
+  {
+    "municipio": "SUPÍA",
+    "codigo_establecimiento": "217777000089",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA CAÑAMOMO Y LOMAPRIETA"
+  },
+  {
+    "municipio": "SUPÍA",
+    "codigo_establecimiento": "117777000726",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA FRANCISCO JOSE DE CALDAS"
+  },
+  {
+    "municipio": "SUPÍA",
+    "codigo_establecimiento": "217777000151",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA HOJAS ANCHAS"
+  },
+  {
+    "municipio": "SUPÍA",
+    "codigo_establecimiento": "217777000534",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA OBISPO"
+  },
+  {
+    "municipio": "SUPÍA",
+    "codigo_establecimiento": "117777000432",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA SAN VICTOR"
+  },
+  {
+    "municipio": "SUPÍA",
+    "codigo_establecimiento": "117777000734",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA SUPIA"
+  },
+  {
+    "municipio": "VICTORIA",
+    "codigo_establecimiento": "217867000061",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA CAÑAVERAL"
+  },
+  {
+    "municipio": "VICTORIA",
+    "codigo_establecimiento": "217867000011",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA ISAZA"
+  },
+  {
+    "municipio": "VICTORIA",
+    "codigo_establecimiento": "117867000164",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA SAN PABLO"
+  },
+  {
+    "municipio": "VILLAMARÍA",
+    "codigo_establecimiento": "217873000375",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA COLOMBIA"
+  },
+  {
+    "municipio": "VILLAMARÍA",
+    "codigo_establecimiento": "217873000499",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA FORTUNATO GAVIRIA BOTERO"
+  },
+  {
+    "municipio": "VILLAMARÍA",
+    "codigo_establecimiento": "117873000168",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA GERARDO ARIAS RAMIREZ"
+  },
+  {
+    "municipio": "VILLAMARÍA",
+    "codigo_establecimiento": "117873000800",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA JAIME DUQUE GRISALES"
+  },
+  {
+    "municipio": "VILLAMARÍA",
+    "codigo_establecimiento": "217873000090",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA NUESTRA SEÑORA DEL ROSARIO"
+  },
+  {
+    "municipio": "VILLAMARÍA",
+    "codigo_establecimiento": "217873000308",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA PARTIDAS"
+  },
+  {
+    "municipio": "VILLAMARÍA",
+    "codigo_establecimiento": "217873000316",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA PIO XII"
+  },
+  {
+    "municipio": "VILLAMARÍA",
+    "codigo_establecimiento": "117873000982",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA SAN PEDRO CLAVER"
+  },
+  {
+    "municipio": "VILLAMARÍA",
+    "codigo_establecimiento": "117873000991",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA SANTA LUISA DE MARILLAC"
+  },
+  {
+    "municipio": "VITERBO",
+    "codigo_establecimiento": "217877000086",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA EL SOCORRO"
+  },
+  {
+    "municipio": "VITERBO",
+    "codigo_establecimiento": "117877000103",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA LA MILAGROSA"
+  },
+  {
+    "municipio": "VITERBO",
+    "codigo_establecimiento": "117877000111",
+    "nombre_establecimiento": "INSTITUCION EDUCATIVA NAZARIO RESTREPO"
+  }
+]
