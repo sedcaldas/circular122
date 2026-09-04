@@ -19,7 +19,7 @@ class SedApp {
       adminController = new SedAdminController();
 
       // 2. Eventos de Pestañas
-      document.querySelectorAll('.nav-tab').forEach(tab => {
+      document.querySelectorAll('.nav-item-btn, .nav-tab').forEach(tab => {
         tab.addEventListener('click', (e) => {
           e.preventDefault();
           const target = tab.dataset.tab;
@@ -59,7 +59,7 @@ class SedApp {
     this.activeTab = tabId;
 
     // Actualizar tabs visuales
-    document.querySelectorAll('.nav-tab').forEach(t => {
+    document.querySelectorAll('.nav-item-btn, .nav-tab').forEach(t => {
       t.classList.toggle('active', t.dataset.tab === tabId);
     });
 

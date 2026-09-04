@@ -41,13 +41,19 @@ class SedAdminController {
 
   switchSubtab(subtabId) {
     document.querySelectorAll('.admin-subtab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.admin-subtab-pane').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.admin-subtab-pane').forEach(p => {
+      p.classList.remove('active');
+      p.style.display = 'none';
+    });
 
     const btn = document.querySelector(`.admin-subtab-btn[data-subtab="${subtabId}"]`);
     const pane = document.getElementById(`admin-pane-${subtabId}`);
 
     if (btn) btn.classList.add('active');
-    if (pane) pane.classList.add('active');
+    if (pane) {
+      pane.classList.add('active');
+      pane.style.display = 'block';
+    }
 
     if (subtabId === 'criterios') this.cargarCriterios();
     if (subtabId === 'auditoria') this.cargarAuditoria();

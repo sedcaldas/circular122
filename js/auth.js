@@ -65,6 +65,17 @@ class SedAuthManager {
     if (tabDashboard) tabDashboard.style.display = (role === 'COORDINADOR' || role === 'ADMINISTRADOR' || role === 'CONSULTA') ? 'inline-flex' : 'none';
     if (tabAdmin) tabAdmin.style.display = (role === 'ADMINISTRADOR') ? 'inline-flex' : 'none';
 
+    // Redirigir a pestaña permitida si la actual está oculta para este rol
+    if (typeof app !== 'undefined' && app.activeTab) {
+      const activeBtn = document.getElementById(`tab-nav-${app.activeTab}`);
+      if (activeBtn && activeBtn.style.display === 'none') {
+        if (role === 'COORDINADOR') app.switchTab('evaluacion');
+        else if (role === 'CONSULTA') app.switchTab('consultas');
+        else if (role === 'RECTOR') app.switchTab('formulario');
+        else if (role === 'ADMINISTRADOR') app.switchTab('formulario');
+      }
+    }
+
     // Disparar evento de cambio de rol
     window.dispatchEvent(new CustomEvent('sedRoleChanged', { detail: { role, user: this.currentUser } }));
   }
