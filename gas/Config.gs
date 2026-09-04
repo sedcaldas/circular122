@@ -8,6 +8,7 @@ var CONFIG = {
   VIGENCIA: "2026",
   MAX_FILE_SIZE_MB: 10,
   ROOT_FOLDER_NAME: "SED CALDAS - PLANES DE CONTINGENCIA",
+  ROOT_FOLDER_ID: "1bIV0LOJ3KeUlD5zUwwdwJGAxqDeUOiMa",
   EMAIL_FROM_NAME: "Secretaría de Educación de Caldas",
   
   // Hojas de la Base Transaccional en Google Sheets

@@ -193,7 +193,10 @@ class SedConsultasController {
               <tr>
                 <td>
                   <strong>${d.tipo_documento}</strong>
-                  <div style="font-size: 0.76rem; color: var(--text-muted);">${d.nombre_original}</div>
+                  <div style="font-size: 0.76rem; color: var(--text-muted);">
+                    ${d.nombre_original}
+                    ${d.url_drive && d.url_drive !== '#' ? ` · <a href="${d.url_drive}" target="_blank" rel="noopener noreferrer" style="color: var(--brand-primary); text-decoration: underline; font-weight: 600;">Abrir en Drive ↗</a>` : ''}
+                  </div>
                 </td>
                 <td>v${d.version}</td>
                 <td>

@@ -127,8 +127,9 @@ class SedEvaluacionController {
           <div class="card-header" style="background: var(--bg-subtle);">
             <div>
               <strong style="font-size: 1.05rem;">${docDef.icono} ${docDef.nombre}</strong>
-              <div style="font-size: 0.8rem; color: var(--text-muted);">
-                Archivo: <code>${doc.nombre_sistema}</code> (${doc.nombre_original})
+              <div style="font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.2rem;">
+                <span>Archivo: <code>${doc.nombre_sistema}</code> (${doc.nombre_original})</span>
+                ${doc.url_drive && doc.url_drive !== '#' ? `<a href="${doc.url_drive}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.25rem; background: var(--brand-secondary-light); color: var(--brand-secondary-dark); padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; text-decoration: none;">🔗 Abrir en Google Drive ↗</a>` : ''}
               </div>
             </div>
             <span class="badge ${docDef.obligatorio ? 'badge-draft' : 'badge-draft'}">

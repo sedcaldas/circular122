@@ -37,14 +37,18 @@ var EnviosService = {
       documentosData.forEach((doc, idx) => {
         let driveResult = { id_drive: '', url_drive: '', nombre_sistema: doc.nombre_sistema };
         if (doc.base64) {
-          driveResult = DriveService.guardarArchivo(
-            envioData.municipio,
-            envioData.codigo_establecimiento,
-            version,
-            doc.tipo_documento,
-            doc.nombre_original,
-            doc.base64
-          );
+          try {
+            driveResult = DriveService.guardarArchivo(
+              envioData.municipio,
+              envioData.codigo_establecimiento,
+              version,
+              doc.tipo_documento,
+              doc.nombre_original,
+              doc.base64
+            );
+          } catch (e) {
+            Logger.log('Error al guardar archivo en Drive para ' + doc.tipo_documento + ': ' + e.message);
+          }
         }
 
         DocumentosService.registrarDocumento({

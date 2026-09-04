@@ -26,6 +26,7 @@ var CONFIG = {
   VIGENCIA: "2026",
   MAX_FILE_SIZE_MB: 10,
   ROOT_FOLDER_NAME: "SED CALDAS - PLANES DE CONTINGENCIA",
+  ROOT_FOLDER_ID: "1bIV0LOJ3KeUlD5zUwwdwJGAxqDeUOiMa",
   EMAIL_FROM_NAME: "Secretaría de Educación de Caldas",
   
   SHEETS: {
@@ -303,14 +304,18 @@ var EnviosService = {
       documentosData.forEach(function(doc, idx) {
         var driveResult = { id_drive: '', url_drive: '', nombre_sistema: doc.nombre_sistema };
         if (doc.base64) {
-          driveResult = DriveService.guardarArchivo(
-            envioData.municipio,
-            envioData.codigo_establecimiento,
-            version,
-            doc.tipo_documento,
-            doc.nombre_original,
-            doc.base64
-          );
+          try {
+            driveResult = DriveService.guardarArchivo(
+              envioData.municipio,
+              envioData.codigo_establecimiento,
+              version,
+              doc.tipo_documento,
+              doc.nombre_original,
+              doc.base64
+            );
+          } catch (e) {
+            Logger.log('Error al guardar archivo en Drive para ' + doc.tipo_documento + ': ' + e.message);
+          }
         }
 
         var docNum = (idx + 1).toString();
@@ -576,10 +581,23 @@ var EvaluacionesService = {
 
 var DriveService = {
   getRootFolder: function() {
+    // 1. Prioridad: Buscar por ID si está configurado en Script Properties o en CONFIG
+    var folderId = PropertiesService.getScriptProperties().getProperty('ROOT_FOLDER_ID') || CONFIG.ROOT_FOLDER_ID;
+    if (folderId && folderId.toString().trim() !== '') {
+      try {
+        return DriveApp.getFolderById(folderId.toString().trim());
+      } catch (e) {
+        Logger.log('Aviso: No se pudo acceder por ROOT_FOLDER_ID (' + folderId + '): ' + e.message);
+      }
+    }
+
+    // 2. Fallback: Buscar por nombre en Google Drive
     var folders = DriveApp.getFoldersByName(CONFIG.ROOT_FOLDER_NAME);
     if (folders.hasNext()) {
       return folders.next();
     }
+
+    // 3. Crear nueva carpeta raíz si no existe
     return DriveApp.createFolder(CONFIG.ROOT_FOLDER_NAME);
   },
 
@@ -593,7 +611,7 @@ var DriveService = {
 
   guardarArchivo: function(municipio, codigoDANE, version, tipoDocumento, nombreOriginal, base64Data) {
     var root = this.getRootFolder();
-    var muniFolder = this.getOrCreateSubfolder(root, municipio.toUpperCase());
+    var muniFolder = this.getOrCreateSubfolder(root, (municipio || 'SIN_MUNICIPIO').toUpperCase());
     var ieFolder = this.getOrCreateSubfolder(muniFolder, 'IE_' + codigoDANE);
     var verPad = version.toString();
     if (verPad.length < 2) verPad = '0' + verPad;
@@ -603,7 +621,13 @@ var DriveService = {
     var ext = parts.length > 1 ? parts.pop() : 'pdf';
     var nombreSistema = 'IE_' + codigoDANE + '_' + tipoDocumento + '_v' + verPad + '.' + ext;
 
-    var decoded = Utilities.base64Decode(base64Data);
+    // Limpieza de prefijo Base64 (data:application/pdf;base64,...) si viene incluido
+    var cleanBase64 = base64Data;
+    if (cleanBase64 && cleanBase64.indexOf(',') > -1) {
+      cleanBase64 = cleanBase64.split(',')[1];
+    }
+
+    var decoded = Utilities.base64Decode(cleanBase64);
     var blob = Utilities.newBlob(decoded, this.getMimeType(ext), nombreSistema);
     
     var file = verFolder.createFile(blob);

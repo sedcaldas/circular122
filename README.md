@@ -137,11 +137,14 @@ La aplicación cuenta con un **motor de simulación y almacenamiento local persi
 1. Cree una nueva hoja de cálculo en Google Drive denominada: `SED_Caldas_Planes_Contingencia`.
 2. Vaya a **Extensiones > Apps Script**.
 3. Puede optar por cualquiera de estas dos opciones:
-   - **Opción A (Recomendada y más rápida):** Copie todo el contenido del archivo [`gas/CodigoCompleto.gs`](file:///c:/Users/hadiaz/Downloads/Circular%20122/gas/CodigoCompleto.gs) en el archivo `Código.gs` de Apps Script.
-   - **Opción B (Modular):** Copie individualmente los archivos de la carpeta [`gas/`](file:///c:/Users/hadiaz/Downloads/Circular%20122/gas/).
-4. En el menú de funciones de Apps Script, seleccione **`setupSistemaCompleto`** y haga clic en **Ejecutar** para crear automáticamente las 10 hojas con formato institucional de la SED Caldas y la carpeta raíz en Google Drive.
-5. Haga clic en **Implementar > Nueva implementación > Tipo: Aplicación web**.
+   - **Opción A (Recomendada y más rápida):** Copie todo el contenido del archivo [`gas/CodigoCompleto.gs`](gas/CodigoCompleto.gs) en el archivo `Código.gs` del editor de Apps Script.
+   - **Opción B (Modular):** Copie individualmente los archivos de la carpeta [`gas/`](gas/).
+4. **Carpeta Raíz de Google Drive:**
+   - La carpeta raíz oficial configurada es: `1bIV0LOJ3KeUlD5zUwwdwJGAxqDeUOiMa` (`ROOT_FOLDER_ID`).
+   - También puede configurarla en Apps Script en **Configuración del proyecto > Propiedades de la secuencia de comandos (Script Properties)** con la clave `ROOT_FOLDER_ID` y valor `1bIV0LOJ3KeUlD5zUwwdwJGAxqDeUOiMa`.
+5. En el menú de funciones de Apps Script, seleccione **`setupSistemaCompleto`** y haga clic en **Ejecutar** para inicializar las hojas y verificar los permisos de Google Drive.
+6. Haga clic en **Implementar > Nueva implementación > Tipo: Aplicación web**.
    - **Ejecutar como:** *Yo (tu cuenta)*.
-   - **Quién tiene acceso:** *Cualquier usuario* (o usuarios autorizados de la entidad).
-6. Copie la **URL de la aplicación web** resultante.
-7. En el portal web, vaya a **Administración > Conexión Backend Google Apps Script**, pegue la URL y guarde.
+   - **Quién tiene acceso:** *Cualquier persona* (`Anyone`).
+7. Copie la **URL de la aplicación web** generada (termina en `/exec`).
+8. En el portal web, vaya a **Administración > Configuración > Vinculación con Google Apps Script Web App**, pegue la URL y haga clic en **Guardar Configuración**.

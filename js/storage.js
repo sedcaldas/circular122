@@ -466,14 +466,16 @@ class SedStorageEngine {
     }
     localStorage.setItem(APP_CONFIG.STORAGE_KEYS.ENVIOS, JSON.stringify(envios));
 
-    // Guardar / Reemplazar documentos
+    // Guardar / Reemplazar documentos (sin base64 para no saturar la cuota de localStorage)
     if (documentosData && documentosData.length > 0) {
       documentosData.forEach(newDoc => {
+        const docToSave = { ...newDoc };
+        delete docToSave.base64;
         const docIdx = documentos.findIndex(d => d.id_envio === newDoc.id_envio && d.tipo_documento === newDoc.tipo_documento && d.version === newDoc.version);
         if (docIdx >= 0) {
-          documentos[docIdx] = newDoc;
+          documentos[docIdx] = docToSave;
         } else {
-          documentos.push(newDoc);
+          documentos.push(docToSave);
         }
       });
       localStorage.setItem(APP_CONFIG.STORAGE_KEYS.DOCUMENTOS, JSON.stringify(documentos));

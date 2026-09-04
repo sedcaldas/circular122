@@ -640,6 +640,7 @@ class SedFormularioController {
       tipo_documento: f.tipo,
       nombre_original: f.nombreOriginal,
       nombre_sistema: f.nombreSistema,
+      base64: f.base64,
       id_drive: `DRIVE-${Date.now()}-${i}`,
       url_drive: '#',
       version: f.version,
