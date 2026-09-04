@@ -4,7 +4,9 @@
 
 class SedApiClient {
   constructor() {
-    this.endpointUrl = localStorage.getItem('sed_gas_endpoint_url') || '';
+    this.endpointUrl = localStorage.getItem('sed_gas_endpoint_url') !== null 
+      ? localStorage.getItem('sed_gas_endpoint_url') 
+      : (APP_CONFIG.GAS_ENDPOINT_URL || '');
     this.useGasBackend = !!this.endpointUrl;
   }
 

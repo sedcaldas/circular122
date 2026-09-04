@@ -2,7 +2,7 @@
  * SERVICIO DE USUARIOS Y ROLES (Google Sheets: USUARIOS)
  */
 
-const UsuariosService = {
+var UsuariosService = {
   obtenerUsuarios: function() {
     const ss = getSpreadsheet();
     const sheet = ss.getSheetByName(CONFIG.SHEETS.USUARIOS);

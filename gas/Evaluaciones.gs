@@ -2,7 +2,7 @@
  * SERVICIO DE EVALUACIÓN TÉCNICA (Google Sheets: EVALUACIONES y ENVIOS)
  */
 
-const EvaluacionesService = {
+var EvaluacionesService = {
   evaluarDocumento: function(payload) {
     DocumentosService.actualizarRevision(
       payload.id_documento,

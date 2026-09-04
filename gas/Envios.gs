@@ -2,7 +2,7 @@
  * SERVICIO TRANSACCIONAL DE ENVÍOS (Google Sheets: ENVIOS)
  */
 
-const EnviosService = {
+var EnviosService = {
   crearEnvio: function(envioData, documentosData) {
     const ss = getSpreadsheet();
     const sheet = ss.getSheetByName(CONFIG.SHEETS.ENVIOS);

@@ -7,6 +7,7 @@ const APP_CONFIG = {
   VERSION: "1.0.0",
   VIGENCIA: "2026",
   CIRCULAR_REF: "Circular N° 122 del 24 de agosto de 2026",
+  GAS_ENDPOINT_URL: "https://script.google.com/macros/s/AKfycbx_WZU8pn2qOUthP_n5gBNwu1-0LJTPwULmsIvnBAnqvyfZtgjHByg00H7HIAJE8nP_/exec",
   MAX_FILE_SIZE_MB: 10,
   ALLOWED_EXTENSIONS: ['pdf', 'docx', 'xlsx', 'jpg', 'jpeg', 'png'],
   ALLOWED_MIME_TYPES: [

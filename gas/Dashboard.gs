@@ -2,7 +2,7 @@
  * SERVICIO DE DASHBOARD Y AGREGACIONES (Google Apps Script)
  */
 
-const DashboardService = {
+var DashboardService = {
   obtenerDashboard: function() {
     const envios = EnviosService.obtenerEnvios({});
     const totalIEs = InstitucionesService.obtenerInstituciones().length;

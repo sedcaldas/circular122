@@ -4,10 +4,10 @@
  */
 
 function setupSistemaCompleto() {
-  const ss = getSpreadsheet();
+  var ss = getSpreadsheet();
   
   // 1. Estructura de Hojas y Encabezados
-  const schema = {
+  var schema = {
     INSTITUCIONES: [
       'municipio', 'codigo_establecimiento', 'nombre_establecimiento'
     ],
@@ -40,8 +40,9 @@ function setupSistemaCompleto() {
     ]
   };
 
-  for (const [sheetName, headers] of Object.entries(schema)) {
-    let sheet = ss.getSheetByName(sheetName);
+  for (var sheetName in schema) {
+    var headers = schema[sheetName];
+    var sheet = ss.getSheetByName(sheetName);
     if (!sheet) {
       sheet = ss.insertSheet(sheetName);
     }
@@ -49,16 +50,16 @@ function setupSistemaCompleto() {
     sheet.appendRow(headers);
     
     // Formato de cabecera institucional
-    const headerRange = sheet.getRange(1, 1, 1, headers.length);
-    headerRange.setBackground('#0F4C81');
+    var headerRange = sheet.getRange(1, 1, 1, headers.length);
+    headerRange.setBackground('#007a33');
     headerRange.setFontColor('#FFFFFF');
     headerRange.setFontWeight('bold');
     sheet.setFrozenRows(1);
   }
 
   // 2. Cargar Criterios Iniciales
-  const sheetCrit = ss.getSheetByName(CONFIG.SHEETS.CRITERIOS_EVALUACION);
-  const criterios = [
+  var sheetCrit = ss.getSheetByName(CONFIG.SHEETS.CRITERIOS_EVALUACION);
+  var criterios = [
     ['CRIT-001', 'PlanContingencia', 'Adopción formal y alcance del plan', 'El documento presenta el plan de contingencia adoptado formalmente.', 'SI', 'SI'],
     ['CRIT-002', 'PlanContingencia', 'Protocolos de emergencia y evacuación', 'Se detallan protocolos de evacuación y zonas seguras.', 'SI', 'SI'],
     ['CRIT-003', 'SedesAfectadas', 'Identificación de daños por sede', 'Se discriminan sedes con nivel de daño y habitabilidad.', 'SI', 'SI'],
@@ -68,11 +69,14 @@ function setupSistemaCompleto() {
     ['CRIT-007', 'EvidenciaActividades', 'Soportes de desarrollo institucional', 'Actas, listas y registro de actividades desarrolladas.', 'SI', 'SI'],
     ['CRIT-008', 'Requerimientos', 'Solicitudes de apoyo técnico/financiero', 'Justificación puntual de necesidades requeridas a la SED.', 'NO', 'SI']
   ];
-  criterios.forEach(c => sheetCrit.appendRow(c));
+  criterios.forEach(function(c) { sheetCrit.appendRow(c); });
 
   // 3. Crear Carpeta Raíz en Google Drive
-  const driveRoot = DriveService.getRootFolder();
-
-  Logger.log('Configuración completada con éxito.');
-  Logger.log('Carpeta Drive: ' + driveRoot.getUrl());
+  try {
+    var driveRoot = DriveService.getRootFolder();
+    Logger.log('Configuración completada con éxito.');
+    Logger.log('Carpeta Drive: ' + driveRoot.getUrl());
+  } catch (e) {
+    Logger.log('Aviso Drive: ' + e.message);
+  }
 }

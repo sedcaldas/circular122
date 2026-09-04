@@ -2,7 +2,7 @@
  * SERVICIO DE SEDES EDUCATIVAS (Google Sheets: SEDES)
  */
 
-const SedesService = {
+var SedesService = {
   obtenerSedes: function(codigoEstablecimiento) {
     const ss = getSpreadsheet();
     const sheet = ss.getSheetByName(CONFIG.SHEETS.SEDES);

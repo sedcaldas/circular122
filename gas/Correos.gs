@@ -2,7 +2,7 @@
  * SERVICIO DE NOTIFICACIONES POR CORREO ELECTRÓNICO (GmailApp)
  */
 
-const CorreosService = {
+var CorreosService = {
   enviarConfirmacionRecepcion: function(datos) {
     const asunto = `Confirmación de recepción – Plan de contingencia – ${datos.institucion}`;
     const cuerpoHtml = `

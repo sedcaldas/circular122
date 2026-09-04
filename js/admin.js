@@ -183,7 +183,7 @@ class SedAdminController {
   cargarConfig() {
     const inputUrl = document.getElementById('inputGasWebAppUrl');
     if (inputUrl) {
-      inputUrl.value = localStorage.getItem('sed_gas_endpoint_url') || '';
+      inputUrl.value = api.endpointUrl || APP_CONFIG.GAS_ENDPOINT_URL || '';
     }
   }
 }

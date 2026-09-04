@@ -12,15 +12,15 @@ function doGet(e) {
 }
 
 function doPost(e) {
-  const lock = LockService.getScriptLock();
+  var lock = LockService.getScriptLock();
   try {
     // Control de concurrencia
     lock.waitLock(30000);
 
-    const postData = JSON.parse(e.postData.contents);
-    const action = postData.action;
+    var postData = JSON.parse(e.postData.contents);
+    var action = postData.action;
 
-    let result;
+    var result;
 
     switch (action) {
       case 'obtenerMunicipios':
@@ -29,6 +29,10 @@ function doPost(e) {
 
       case 'obtenerInstituciones':
         result = InstitucionesService.obtenerInstituciones(postData.municipio);
+        break;
+
+      case 'obtenerSedes':
+        result = SedesService.obtenerSedes(postData.codigo_establecimiento);
         break;
 
       case 'obtenerCriterios':
@@ -64,7 +68,7 @@ function doPost(e) {
         break;
 
       default:
-        throw new Error(`Acción no reconocida: ${action}`);
+        throw new Error('Acción no reconocida: ' + action);
     }
 
     return createJsonResponse({

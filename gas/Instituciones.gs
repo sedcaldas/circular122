@@ -2,7 +2,7 @@
  * SERVICIO DE CONSULTA DE INSTITUCIONES Y MUNICIPIOS
  */
 
-const InstitucionesService = {
+var InstitucionesService = {
   obtenerMunicipios: function() {
     const ss = getSpreadsheet();
     const sheet = ss.getSheetByName(CONFIG.SHEETS.INSTITUCIONES);

@@ -2,7 +2,7 @@
  * SERVICIO DE CRITERIOS PARAMETRIZADOS (Google Sheets: CRITERIOS_EVALUACION)
  */
 
-const CriteriosService = {
+var CriteriosService = {
   obtenerCriterios: function(tipoDocFiltro) {
     const ss = getSpreadsheet();
     const sheet = ss.getSheetByName(CONFIG.SHEETS.CRITERIOS_EVALUACION);

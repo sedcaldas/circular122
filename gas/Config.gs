@@ -3,7 +3,7 @@
  * Sistema de Gestión y Seguimiento de Planes de Contingencia - SED Caldas
  */
 
-const CONFIG = {
+var CONFIG = {
   VERSION: "1.0.0",
   VIGENCIA: "2026",
   MAX_FILE_SIZE_MB: 10,

@@ -3,7 +3,7 @@
  * Jerarquía: ROOT / [MUNICIPIO] / IE_[CODDANE] / v[XX]
  */
 
-const DriveService = {
+var DriveService = {
   getRootFolder: function() {
     const folders = DriveApp.getFoldersByName(CONFIG.ROOT_FOLDER_NAME);
     if (folders.hasNext()) {

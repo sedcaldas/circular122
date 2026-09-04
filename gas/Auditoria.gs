@@ -2,7 +2,7 @@
  * SERVICIO DE AUDITORÍA Y TRAZABILIDAD (Google Sheets: AUDITORIA)
  */
 
-const AuditoriaService = {
+var AuditoriaService = {
   registrar: function(entry) {
     const ss = getSpreadsheet();
     const sheet = ss.getSheetByName(CONFIG.SHEETS.AUDITORIA);

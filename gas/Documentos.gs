@@ -2,7 +2,7 @@
  * SERVICIO TRANSACCIONAL DE DOCUMENTOS (Google Sheets: DOCUMENTOS)
  */
 
-const DocumentosService = {
+var DocumentosService = {
   registrarDocumento: function(doc) {
     const ss = getSpreadsheet();
     const sheet = ss.getSheetByName(CONFIG.SHEETS.DOCUMENTOS);
