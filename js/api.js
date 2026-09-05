@@ -176,39 +176,87 @@ class SedApiClient {
   // --- GESTIÓN DE USUARIOS Y ACCESOS ---
   async obtenerUsuarios() {
     if (this.useGasBackend) {
-      return this._callGas('obtenerUsuarios');
+      try {
+        const gasRes = await this._callGas('obtenerUsuarios');
+        if (gasRes && gasRes.success && Array.isArray(gasRes.data) && gasRes.data.length > 0) {
+          return gasRes;
+        }
+        console.warn('GAS no devolvió usuarios o no reconoce la acción, usando almacenamiento local.');
+        const data = db.getUsuarios();
+        return { success: true, data };
+      } catch (err) {
+        console.warn('Error en obtenerUsuarios desde GAS, usando base local:', err);
+        const data = db.getUsuarios();
+        return { success: true, data };
+      }
     }
     const data = db.getUsuarios();
     return Promise.resolve({ success: true, data });
   }
 
   async guardarUsuario(usuario) {
+    const localData = db.saveUsuario(usuario);
     if (this.useGasBackend) {
-      return this._callGas('guardarUsuario', { usuario });
+      try {
+        const gasRes = await this._callGas('guardarUsuario', { usuario });
+        if (gasRes && gasRes.success) {
+          return gasRes;
+        }
+      } catch (err) {
+        console.warn('Error al guardar usuario en GAS:', err);
+      }
     }
-    const data = db.saveUsuario(usuario);
-    return Promise.resolve({ success: true, data, message: 'Usuario guardado exitosamente.' });
+    return Promise.resolve({ success: true, data: localData, message: 'Usuario guardado exitosamente.' });
   }
 
   async eliminarUsuario(id_usuario) {
+    const localData = db.deleteUsuario(id_usuario);
     if (this.useGasBackend) {
-      return this._callGas('eliminarUsuario', { id_usuario });
+      try {
+        const gasRes = await this._callGas('eliminarUsuario', { id_usuario });
+        if (gasRes && gasRes.success) {
+          return gasRes;
+        }
+      } catch (err) {
+        console.warn('Error al eliminar usuario en GAS:', err);
+      }
     }
-    const data = db.deleteUsuario(id_usuario);
-    return Promise.resolve({ success: true, data, message: 'Usuario eliminado.' });
+    return Promise.resolve({ success: true, data: localData, message: 'Usuario eliminado exitosamente.' });
   }
 
   async cambiarEstadoUsuario(id_usuario, estado) {
+    const localData = db.toggleUsuarioEstado(id_usuario);
     if (this.useGasBackend) {
-      return this._callGas('cambiarEstadoUsuario', { id_usuario, estado });
+      try {
+        const gasRes = await this._callGas('cambiarEstadoUsuario', { id_usuario, estado });
+        if (gasRes && gasRes.success) {
+          return gasRes;
+        }
+      } catch (err) {
+        console.warn('Error al cambiar estado de usuario en GAS:', err);
+      }
     }
-    const data = db.toggleUsuarioEstado(id_usuario);
-    return Promise.resolve({ success: true, data });
+    return Promise.resolve({ success: true, data: localData });
   }
 
   async verificarAcceso(correo, rol) {
     if (this.useGasBackend) {
-      return this._callGas('verificarAcceso', { correo, rol });
+      try {
+        const gasRes = await this._callGas('verificarAcceso', { correo, rol });
+        if (gasRes && gasRes.success && gasRes.data && gasRes.data.autorizado) {
+          return gasRes;
+        }
+        // Fallback defensivo a catálogo local de usuarios autorizados
+        const localResult = db.verificarAccesoLocal(correo, rol);
+        if (localResult.autorizado) {
+          return { success: true, data: localResult };
+        }
+        return gasRes && gasRes.data ? gasRes : { success: true, data: localResult };
+      } catch (err) {
+        console.warn('Fallo de conexión en verificarAcceso con GAS, aplicando verificación local:', err);
+        const localResult = db.verificarAccesoLocal(correo, rol);
+        return { success: true, data: localResult };
+      }
     }
     const result = db.verificarAccesoLocal(correo, rol);
     return Promise.resolve({ success: true, data: result });

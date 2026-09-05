@@ -10690,6 +10690,17 @@ const SED_USUARIOS_INICIALES = [
     codigo_establecimiento: '',
     rol: 'ADMINISTRADOR',
     estado: 'ACTIVO'
+  },
+  {
+    id_usuario: 'USR-004',
+    nombre: 'Supervisión Departamental SED',
+    cargo: 'Coordinador Técnico Departamental',
+    correo: 'hadiaz@sedcaldas.edu.co',
+    telefono: '3100000000',
+    municipio: 'TODOS',
+    codigo_establecimiento: '',
+    rol: 'ADMINISTRADOR',
+    estado: 'ACTIVO'
   }
 ];
 

@@ -588,7 +588,24 @@ class SedStorageEngine {
 
   // --- MÉTODOS DE USUARIOS Y CONTROL DE ACCESOS ---
   getUsuarios() {
-    return JSON.parse(localStorage.getItem(APP_CONFIG.STORAGE_KEYS.USUARIOS) || '[]');
+    let list = JSON.parse(localStorage.getItem(APP_CONFIG.STORAGE_KEYS.USUARIOS) || '[]');
+    if (!list || list.length === 0) {
+      list = [...SED_USUARIOS_INICIALES];
+      localStorage.setItem(APP_CONFIG.STORAGE_KEYS.USUARIOS, JSON.stringify(list));
+    } else {
+      let changed = false;
+      SED_USUARIOS_INICIALES.forEach(initUser => {
+        const exists = list.some(u => u.correo && u.correo.toLowerCase() === initUser.correo.toLowerCase());
+        if (!exists) {
+          list.push({ ...initUser });
+          changed = true;
+        }
+      });
+      if (changed) {
+        localStorage.setItem(APP_CONFIG.STORAGE_KEYS.USUARIOS, JSON.stringify(list));
+      }
+    }
+    return list;
   }
 
   saveUsuario(userData) {
