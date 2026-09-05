@@ -419,7 +419,7 @@ class SedStorageEngine {
       id_auditoria: 'AUD-' + Date.now().toString(36).toUpperCase(),
       fecha_hora: new Date().toISOString().replace('T', ' ').substring(0, 19),
       usuario: data.usuario || 'Anonimo',
-      rol: data.rol || 'CONSULTA',
+      rol: data.rol || 'RECTOR',
       accion: data.accion || 'ACCION',
       municipio: data.municipio || '',
       codigo_establecimiento: data.codigo_establecimiento || '',

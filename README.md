@@ -81,7 +81,7 @@ Circular 122/
 │   ├── data.js                  # Catálogo de 26 municipios y 163 IEs de Caldas
 │   ├── storage.js               # Motor de persistencia y simulación local
 │   ├── api.js                   # Cliente HTTP unificado (GAS Web App / Local)
-│   ├── auth.js                  # Gestión de roles (Rector, Coordinador, Admin, Consulta)
+│   ├── auth.js                  # Gestión de roles (Rector, Coordinador, Administrador)
 │   ├── documentos.js            # Validación, nomenclatura oficial y base64
 │   ├── formulario.js            # Asistente de 4 pasos (Institución, Responsable, Sedes, Docs)
 │   ├── consultas.js             # Búsqueda por DANE/Radicado con línea de tiempo
@@ -124,7 +124,7 @@ Circular 122/
 ### 1. Ejecución Local Inmediata
 La aplicación cuenta con un **motor de simulación y almacenamiento local persistente**. No requiere ningún servidor externo para pruebas completas:
 1. Abra `index.html` directamente en su navegador web (o mediante Live Server).
-2. Utilice el selector de perfil en el encabezado para cambiar entre **Rector**, **Coordinador**, **Administrador** y **Consulta**.
+2. Utilice el selector de perfil en el encabezado para cambiar entre **Rector**, **Coordinador** y **Administrador**.
 3. Realice radicaciones, evaluaciones por criterios, consultas de trazabilidad y visualización de auditoría.
 
 ### 2. Publicación en GitHub Pages

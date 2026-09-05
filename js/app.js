@@ -46,6 +46,15 @@ class SedApp {
   }
 
   switchTab(tabId) {
+    const role = typeof auth !== 'undefined' ? auth.getRole() : 'RECTOR';
+
+    // Validación de seguridad por perfil
+    if (role === 'RECTOR' && tabId !== 'formulario') {
+      tabId = 'formulario';
+    } else if (role === 'COORDINADOR' && (tabId === 'formulario' || tabId === 'admin')) {
+      tabId = 'evaluacion';
+    }
+
     this.activeTab = tabId;
 
     // Actualizar tabs visuales
@@ -59,13 +68,13 @@ class SedApp {
     });
 
     // Cargas perezosas según pestaña
-    if (tabId === 'consultas') {
+    if (tabId === 'consultas' && typeof consultasController !== 'undefined') {
       consultasController.ejecutarConsulta();
-    } else if (tabId === 'evaluacion') {
+    } else if (tabId === 'evaluacion' && typeof evaluacionController !== 'undefined') {
       evaluacionController.cargarBandeja();
-    } else if (tabId === 'dashboard') {
+    } else if (tabId === 'dashboard' && typeof dashboardController !== 'undefined') {
       dashboardController.actualizarDashboard();
-    } else if (tabId === 'admin') {
+    } else if (tabId === 'admin' && typeof adminController !== 'undefined') {
       adminController.switchSubtab('criterios');
     }
 

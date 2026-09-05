@@ -695,6 +695,11 @@ class SedFormularioController {
       document.getElementById('successVersionNum').textContent = `Versión ${envio.version}`;
       document.getElementById('successEmailSentTo').textContent = envio.correo_usuario;
       document.getElementById('successFechaHora').textContent = `${envio.fecha_envio} a las ${envio.hora_envio}`;
+
+      const btnConsultas = document.getElementById('btnSuccessIrConsultas');
+      if (btnConsultas) {
+        btnConsultas.style.display = (typeof auth !== 'undefined' && auth.getRole() !== 'RECTOR') ? 'inline-flex' : 'none';
+      }
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }

@@ -46,6 +46,11 @@ class SedConsultasController {
   }
 
   async ejecutarConsulta() {
+    const role = typeof auth !== 'undefined' ? auth.getRole() : 'RECTOR';
+    if (role !== 'COORDINADOR' && role !== 'ADMINISTRADOR') {
+      return;
+    }
+
     const query = document.getElementById('inputConsultaSearch')?.value.trim() || '';
     const municipio = document.getElementById('selectConsultaMunicipio')?.value || 'TODOS';
     const estado = document.getElementById('selectConsultaEstado')?.value || 'TODOS';

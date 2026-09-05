@@ -58,7 +58,6 @@
             <option value="RECTOR">Rector / Directivo IE</option>
             <option value="COORDINADOR">🔒 Coordinador SED</option>
             <option value="ADMINISTRADOR">🔒 Administrador SED</option>
-            <option value="CONSULTA">Consulta Pública</option>
           </select>
         </div>
       </div>
@@ -468,7 +467,7 @@
             <button type="button" class="btn btn-primary" onclick="formController.resetForm()">
               ➕ Radicar Otro Plan
             </button>
-            <button type="button" class="btn btn-accent" onclick="app.switchTab('consultas')">
+            <button type="button" class="btn btn-accent" id="btnSuccessIrConsultas" onclick="app.switchTab('consultas')" style="display: none;">
               🔍 Ir a Consulta y Seguimiento
             </button>
           </div>
@@ -1085,8 +1084,7 @@
             <select id="userFormRol" class="form-control">
               <option value="COORDINADOR">✍️ COORDINADOR (Bandeja de Evaluación, Dashboard y Consultas)</option>
               <option value="ADMINISTRADOR">🛡️ ADMINISTRADOR (Acceso Total y Gestión de Usuarios)</option>
-              <option value="RECTOR">📝 RECTOR (Radicación y Consulta)</option>
-              <option value="CONSULTA">👁️ CONSULTA (Visualización y Estadísticas)</option>
+              <option value="RECTOR">📝 RECTOR (Radicación de Plan)</option>
             </select>
           </div>
           <div class="col-6 form-group">

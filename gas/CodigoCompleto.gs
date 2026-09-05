@@ -782,7 +782,7 @@ var AuditoriaService = {
       idAudit,
       nowStr,
       entry.usuario || 'Desconocido',
-      entry.rol || 'CONSULTA',
+      entry.rol || 'RECTOR',
       entry.accion || 'ACCION',
       entry.municipio || '',
       entry.codigo_establecimiento || '',

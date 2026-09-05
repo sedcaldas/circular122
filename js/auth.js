@@ -46,7 +46,7 @@ class SedAuthManager {
   }
 
   getRole() {
-    return this.currentUser ? this.currentUser.rol : APP_CONFIG.ROLES.CONSULTA;
+    return this.currentUser ? this.currentUser.rol : APP_CONFIG.ROLES.RECTOR;
   }
 
   isAuthenticated() {
@@ -55,20 +55,20 @@ class SedAuthManager {
 
   // --- SOLICITUD DE CAMBIO DE ROL CON CONTROL DE ACCESO ---
   requestRoleChange(targetRole) {
-    // Roles libres / públicos
-    if (targetRole === 'RECTOR' || targetRole === 'CONSULTA') {
-      const defaultUser = SED_USUARIOS_INICIALES.find(u => u.rol === targetRole) || {
-        id_usuario: 'USR-PUB',
-        nombre: targetRole === 'RECTOR' ? 'Directivo Docente' : 'Ciudadano / Consulta',
-        cargo: targetRole === 'RECTOR' ? 'Rector' : 'Consulta Pública',
-        correo: targetRole === 'RECTOR' ? 'rectoria@sedcaldas.edu.co' : 'consulta@sedcaldas.edu.co',
+    // Rol RECTOR (por defecto / libre para radicación)
+    if (targetRole === 'RECTOR') {
+      const defaultUser = SED_USUARIOS_INICIALES.find(u => u.rol === 'RECTOR') || {
+        id_usuario: 'USR-001',
+        nombre: 'Directivo Docente / Rector',
+        cargo: 'Rector',
+        correo: 'rectoria@sedcaldas.edu.co',
         municipio: 'TODOS',
         codigo_establecimiento: '',
-        rol: targetRole
+        rol: 'RECTOR'
       };
       this.setCurrentUser(defaultUser, false);
       if (typeof app !== 'undefined') {
-        app.showToast(`Perfil cambiado a: ${targetRole}`, 'info');
+        app.showToast('Perfil cambiado a: Rector / Directivo IE', 'info');
       }
       return;
     }
@@ -216,11 +216,14 @@ class SedAuthManager {
     const tabDashboard = document.getElementById('tab-nav-dashboard');
     const tabAdmin = document.getElementById('tab-nav-admin');
 
-    // Reglas estrictas de visibilidad
+    // Reglas estrictas de visibilidad y acceso por perfil
+    // RECTOR: Únicamente Radicación de Plan (se restringe Consulta y Trazabilidad)
+    // COORDINADOR: Consulta y Trazabilidad, Bandeja de Evaluación, Dashboard
+    // ADMINISTRADOR: Acceso Total (Radicación, Consulta, Evaluación, Dashboard, Administración)
     if (tabFormulario) tabFormulario.style.display = (role === 'RECTOR' || role === 'ADMINISTRADOR') ? 'inline-flex' : 'none';
-    if (tabConsultas) tabConsultas.style.display = 'inline-flex';
+    if (tabConsultas) tabConsultas.style.display = (role === 'COORDINADOR' || role === 'ADMINISTRADOR') ? 'inline-flex' : 'none';
     if (tabEvaluacion) tabEvaluacion.style.display = (role === 'COORDINADOR' || role === 'ADMINISTRADOR') ? 'inline-flex' : 'none';
-    if (tabDashboard) tabDashboard.style.display = (role === 'COORDINADOR' || role === 'ADMINISTRADOR' || role === 'CONSULTA') ? 'inline-flex' : 'none';
+    if (tabDashboard) tabDashboard.style.display = (role === 'COORDINADOR' || role === 'ADMINISTRADOR') ? 'inline-flex' : 'none';
     
     // Solo ADMINISTRADOR puede ver y acceder a la pestaña de administración
     if (tabAdmin) tabAdmin.style.display = (role === 'ADMINISTRADOR') ? 'inline-flex' : 'none';
@@ -230,7 +233,6 @@ class SedAuthManager {
       const activeBtn = document.getElementById(`tab-nav-${app.activeTab}`);
       if (activeBtn && activeBtn.style.display === 'none') {
         if (role === 'COORDINADOR') app.switchTab('evaluacion');
-        else if (role === 'CONSULTA') app.switchTab('consultas');
         else if (role === 'RECTOR') app.switchTab('formulario');
         else if (role === 'ADMINISTRADOR') app.switchTab('formulario');
       }

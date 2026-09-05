@@ -103,7 +103,7 @@ class SedAdminController {
           </td>
           <td>
             <span class="badge ${u.rol === 'ADMINISTRADOR' ? 'badge-correction' : u.rol === 'COORDINADOR' ? 'badge-review' : 'badge-draft'}" style="font-weight: 700;">
-              ${u.rol === 'ADMINISTRADOR' ? '🛡️ ADMINISTRADOR' : u.rol === 'COORDINADOR' ? '✍️ COORDINADOR' : u.rol === 'RECTOR' ? '📝 RECTOR' : '👁️ CONSULTA'}
+              ${u.rol === 'ADMINISTRADOR' ? '🛡️ ADMINISTRADOR' : u.rol === 'COORDINADOR' ? '✍️ COORDINADOR' : '📝 RECTOR'}
             </span>
           </td>
           <td>
